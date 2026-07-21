@@ -4,9 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#EAF5EF',
+        bg: '#DDF3E4',
         card: '#FEFEFF',
-        panel: 'rgba(1,107,70,0.04)',
+        panel: 'rgba(1,107,70,0.06)',
+        sidebar: '#014C33',
         border: 'rgba(1,76,51,0.12)',
         'border-hover': 'rgba(1,76,51,0.22)',
         accent: '#016B46',

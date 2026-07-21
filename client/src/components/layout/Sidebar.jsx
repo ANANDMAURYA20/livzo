@@ -33,12 +33,12 @@ const Sidebar = ({ collapsed, onToggle, mobileOpen, onMobileClose }) => {
   const SidebarContent = ({ mini = false }) => (
     <div className="flex flex-col h-full">
       {/* Logo */}
-      <div className={`flex items-center gap-3 px-4 py-4 border-b border-white/[0.08] ${mini ? 'justify-center' : ''}`}>
-        <div className="w-7 h-7 bg-accent rounded-lg flex items-center justify-center flex-shrink-0">
+      <div className={`flex items-center gap-3 px-4 py-4 border-b border-white/[0.12] ${mini ? 'justify-center' : ''}`}>
+        <div className="w-7 h-7 bg-[#016B46] rounded-lg flex items-center justify-center flex-shrink-0">
           <LayoutDashboard size={14} className="text-white" />
         </div>
         {!mini && (
-          <span className="font-semibold text-text-primary text-sm tracking-tight">
+          <span className="font-semibold text-white text-sm tracking-tight">
             LIVZO
           </span>
         )}
@@ -52,7 +52,11 @@ const Sidebar = ({ collapsed, onToggle, mobileOpen, onMobileClose }) => {
             to={to}
             onClick={onMobileClose}
             className={({ isActive }) =>
-              `${isActive ? 'nav-item-active' : 'nav-item-default'} ${mini ? 'justify-center' : ''}`
+              `flex items-center gap-3 px-3 py-2.5 rounded-btn text-sm font-medium transition-all duration-150 cursor-pointer ${
+                isActive
+                  ? 'bg-white/[0.15] text-white'
+                  : 'text-white/[0.6] hover:text-white hover:bg-white/[0.08]'
+              } ${mini ? 'justify-center' : ''}`
             }
             title={mini ? label : undefined}
           >
@@ -63,23 +67,23 @@ const Sidebar = ({ collapsed, onToggle, mobileOpen, onMobileClose }) => {
       </nav>
 
       {/* User + Logout */}
-      <div className="px-2 pb-3 border-t border-white/[0.08] pt-3 space-y-1">
+      <div className="px-2 pb-3 border-t border-white/[0.12] pt-3 space-y-1">
         {!mini && (
           <div className="flex items-center gap-3 px-3 py-2 rounded-btn">
-            <div className="w-7 h-7 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
-              <span className="text-xs font-medium text-accent">
+            <div className="w-7 h-7 rounded-full bg-white/[0.15] flex items-center justify-center flex-shrink-0">
+              <span className="text-xs font-medium text-white">
                 {getInitials(user?.name)}
               </span>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium text-text-primary truncate">{user?.name}</p>
-              <p className="text-xs text-text-muted truncate">{user?.email}</p>
+              <p className="text-xs font-medium text-white truncate">{user?.name}</p>
+              <p className="text-xs text-white/[0.5] truncate">{user?.email}</p>
             </div>
           </div>
         )}
         <button
           onClick={handleLogout}
-          className={`nav-item-default w-full ${mini ? 'justify-center' : ''}`}
+          className={`flex items-center gap-3 px-3 py-2.5 rounded-btn text-sm font-medium transition-all duration-150 cursor-pointer text-white/[0.6] hover:text-white hover:bg-white/[0.08] w-full ${mini ? 'justify-center' : ''}`}
         >
           <LogOut size={16} />
           {!mini && <span>Logout</span>}
@@ -94,14 +98,14 @@ const Sidebar = ({ collapsed, onToggle, mobileOpen, onMobileClose }) => {
       <motion.aside
         animate={{ width: collapsed ? 56 : 220 }}
         transition={{ duration: 0.2, ease: 'easeInOut' }}
-        className="hidden md:flex flex-col flex-shrink-0 bg-card border-r border-white/[0.08] relative overflow-hidden"
+        className="hidden md:flex flex-col flex-shrink-0 bg-[#014C33] relative overflow-hidden"
       >
         <SidebarContent mini={collapsed} />
 
         {/* Toggle button */}
         <button
           onClick={onToggle}
-          className="absolute top-4 -right-3 w-6 h-6 bg-panel border border-white/[0.1] rounded-full flex items-center justify-center text-text-muted hover:text-text-primary transition-colors z-10"
+          className="absolute top-4 -right-3 w-6 h-6 bg-[#014C33] border border-white/[0.2] rounded-full flex items-center justify-center text-white/[0.6] hover:text-white transition-colors z-10"
         >
           <motion.div animate={{ rotate: collapsed ? 180 : 0 }} transition={{ duration: 0.2 }}>
             <ChevronLeft size={12} />
@@ -125,7 +129,7 @@ const Sidebar = ({ collapsed, onToggle, mobileOpen, onMobileClose }) => {
               animate={{ x: 0 }}
               exit={{ x: -220 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="fixed left-0 top-0 h-full w-[220px] bg-card border-r border-white/[0.08] z-50 md:hidden"
+              className="fixed left-0 top-0 h-full w-[220px] bg-[#014C33] z-50 md:hidden"
             >
               <SidebarContent />
             </motion.aside>

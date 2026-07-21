@@ -106,7 +106,7 @@
 
   /* Inputs */
   .vf-input {
-    @apply w-full bg-panel border border-border rounded-btn px-3 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-[rgba(1,107,70,0.25)] transition-all duration-150;
+    @apply w-full bg-white border border-border rounded-btn px-3 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-[rgba(1,107,70,0.25)] transition-all duration-150;
   }
 
   .vf-input-error {
@@ -148,7 +148,7 @@
   }
 
   .vf-table th {
-    @apply text-left text-xs font-medium text-text-muted px-4 py-3 border-b border-border whitespace-nowrap;
+    @apply text-left text-[10px] font-semibold text-text-muted uppercase tracking-wider px-4 py-3 border-b border-border bg-[rgba(1,107,70,0.04)] whitespace-nowrap;
   }
 
   .vf-table td {
@@ -188,7 +188,7 @@
 
   /* Section headers */
   .section-title {
-    @apply text-base font-medium text-text-primary;
+    @apply text-base font-semibold text-text-primary tracking-tight;
   }
 
   .section-subtitle {
@@ -212,5 +212,13 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .eyebrow {
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: theme('colors.text-muted');
   }
 }
