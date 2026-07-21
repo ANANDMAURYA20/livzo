@@ -29,11 +29,11 @@ import Badge from '../components/ui/Badge';
 import { formatDate, formatCurrency, timeAgo } from '../utils/formatters';
 import { CHART_COLORS } from '../utils/constants';
 
-const StatCard = ({ label, value, icon: Icon, loading, color = '#f1f1f1', delta }) => (
+const StatCard = ({ label, value, icon: Icon, loading, color = '#FEFEFF', delta }) => (
   <div className="stat-card">
     <div className="flex items-center justify-between">
       <span className="text-xs text-text-muted">{label}</span>
-      <div className="w-7 h-7 rounded-lg bg-white/[0.05] flex items-center justify-center">
+      <div className="w-7 h-7 rounded-lg bg-[rgba(1,107,70,0.08)] flex items-center justify-center">
         <Icon size={14} style={{ color }} />
       </div>
     </div>
@@ -48,7 +48,7 @@ const StatCard = ({ label, value, icon: Icon, loading, color = '#f1f1f1', delta 
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-panel border border-white/[0.08] rounded-btn px-3 py-2 text-xs shadow-modal">
+    <div className="bg-panel border border-border rounded-btn px-3 py-2 text-xs shadow-modal">
       <p className="text-text-muted mb-1">{label}</p>
       <p className="text-text-primary font-medium">{payload[0].value} inquiries</p>
     </div>
@@ -58,7 +58,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 const PieTooltip = ({ active, payload }) => {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-panel border border-white/[0.08] rounded-btn px-3 py-2 text-xs shadow-modal">
+    <div className="bg-panel border border-border rounded-btn px-3 py-2 text-xs shadow-modal">
       <p className="text-text-primary font-medium">{payload[0].name}: {payload[0].value}</p>
     </div>
   );
@@ -103,7 +103,7 @@ const DashboardPage = () => {
   }, []);
 
   const stats = [
-    { label: 'Total Inquiries', value: overview?.total, icon: Users, color: '#3b82f6' },
+    { label: 'Total Inquiries', value: overview?.total, icon: Users, color: '#016B46' },
     { label: "Today's Visitors", value: overview?.today, icon: Clock, color: '#f59e0b' },
     { label: 'Visit Scheduled', value: overview?.visitScheduled, icon: CalendarCheck, color: '#a855f7' },
     { label: 'Joined', value: overview?.joined, icon: TrendingUp, color: '#22c55e' },
@@ -161,17 +161,17 @@ const DashboardPage = () => {
           ) : (
             <ResponsiveContainer width="100%" height={180}>
               <LineChart data={monthly}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
-                <XAxis dataKey="month" tick={{ fill: '#71717a', fontSize: 11 }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fill: '#71717a', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(1,76,51,0.08)" />
+                <XAxis dataKey="month" tick={{ fill: 'rgba(1,76,51,0.48)', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fill: 'rgba(1,76,51,0.48)', fontSize: 11 }} axisLine={false} tickLine={false} />
                 <Tooltip content={<CustomTooltip />} />
                 <Line
                   type="monotone"
                   dataKey="count"
-                  stroke="#3b82f6"
+                  stroke="#016B46"
                   strokeWidth={2}
-                  dot={{ fill: '#3b82f6', r: 3, strokeWidth: 0 }}
-                  activeDot={{ r: 5, fill: '#3b82f6' }}
+                  dot={{ fill: '#016B46', r: 3, strokeWidth: 0 }}
+                  activeDot={{ r: 5, fill: '#016B46' }}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -229,7 +229,7 @@ const DashboardPage = () => {
 
       {/* Recent Inquiries */}
       <div className="vf-card overflow-hidden">
-        <div className="flex items-center justify-between px-5 py-4 border-b border-white/[0.06]">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-border">
           <div>
             <p className="section-title">Recent Inquiries</p>
             <p className="section-subtitle">Latest 8 entries</p>

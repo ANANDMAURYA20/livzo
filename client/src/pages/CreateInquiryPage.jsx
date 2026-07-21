@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
-import { Zap, ArrowLeft } from 'lucide-react';
+import { LayoutDashboard, ArrowLeft } from 'lucide-react';
 import { inquiryService } from '../services/inquiryService';
 import InquiryForm from '../components/forms/InquiryForm';
 import { useAuth } from '../context/AuthContext';
@@ -35,7 +35,7 @@ const CreateInquiryPage = () => {
       <div
         className="fixed inset-0 opacity-[0.03] pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(1,76,51,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(1,76,51,0.1) 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
         }}
       />
@@ -44,9 +44,9 @@ const CreateInquiryPage = () => {
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-              <Zap size={16} className="text-white" />
+              <LayoutDashboard size={16} className="text-white" />
             </div>
-            <span className="font-semibold text-text-primary text-base">VisitorFlow</span>
+            <span className="font-semibold text-text-primary text-base">LIVZO Command Center</span>
           </div>
 
           <Link to="/" className="text-sm text-text-muted hover:text-text-primary flex items-center gap-2 transition-colors">

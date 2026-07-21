@@ -2,7 +2,7 @@
 export const STATUSES = ['New', 'Contacted', 'Visit Scheduled', 'Joined', 'Rejected'];
 
 export const STATUS_CONFIG = {
-  New: { label: 'New', className: 'badge-new', color: '#3b82f6' },
+  New: { label: 'New', className: 'badge-new', color: '#60A5FA' },
   Contacted: { label: 'Contacted', className: 'badge-contacted', color: '#f59e0b' },
   'Visit Scheduled': { label: 'Visit Scheduled', className: 'badge-visit', color: '#a855f7' },
   Joined: { label: 'Joined', className: 'badge-joined', color: '#22c55e' },
@@ -47,7 +47,7 @@ export const DEFAULT_COUNSELORS = [
 ];
 
 export const CHART_COLORS = {
-  New: '#3b82f6',
+  New: '#60A5FA',
   Contacted: '#f59e0b',
   'Visit Scheduled': '#a855f7',
   Joined: '#22c55e',

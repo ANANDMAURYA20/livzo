@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Zap } from 'lucide-react';
+import { ArrowLeft, LayoutDashboard } from 'lucide-react';
 
 const NotFoundPage = () => (
   <div className="min-h-screen bg-bg flex items-center justify-center p-4">
@@ -12,9 +12,9 @@ const NotFoundPage = () => (
     >
       <div className="flex items-center justify-center gap-2 mb-8">
         <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-          <Zap size={16} className="text-white" />
+          <LayoutDashboard size={16} className="text-white" />
         </div>
-        <span className="font-semibold text-text-primary">VisitorFlow</span>
+        <span className="font-semibold text-text-primary">LIVZO Command Center</span>
       </div>
 
       <h1 className="text-[80px] font-semibold text-white/[0.07] leading-none mb-2">404</h1>

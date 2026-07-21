@@ -4,16 +4,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#0b0c0e',
-        card: '#131416',
-        panel: '#1f1f21',
-        border: 'rgba(255,255,255,0.06)',
-        'border-hover': 'rgba(255,255,255,0.12)',
-        accent: '#3b82f6',
-        'accent-hover': '#2563eb',
-        'text-primary': '#f1f1f1',
-        'text-secondary': '#a1a1aa',
-        'text-muted': '#71717a',
+        bg: '#FEFEFF',
+        card: '#FEFEFF',
+        panel: 'rgba(1,107,70,0.04)',
+        border: 'rgba(1,76,51,0.12)',
+        'border-hover': 'rgba(1,76,51,0.22)',
+        accent: '#016B46',
+        'accent-hover': '#014C33',
+        'accent-active': '#014C33',
+        'text-primary': '#014C33',
+        'text-secondary': 'rgba(1,76,51,0.72)',
+        'text-muted': 'rgba(1,76,51,0.48)',
         danger: '#ef4444',
         success: '#22c55e',
         warning: '#f59e0b',
@@ -27,8 +28,8 @@ export default {
         badge: '6px',
       },
       boxShadow: {
-        card: '0 1px 3px rgba(0,0,0,0.3), 0 0 0 0.5px rgba(255,255,255,0.06)',
-        'card-hover': '0 4px 12px rgba(0,0,0,0.4), 0 0 0 0.5px rgba(255,255,255,0.1)',
+        card: '0 2px 8px rgba(1,76,51,0.04), 0 0 0 1px rgba(1,76,51,0.06)',
+        'card-hover': '0 8px 24px rgba(1,76,51,0.08), 0 0 0 1px rgba(1,76,51,0.12)',
         modal: '0 20px 60px rgba(0,0,0,0.6)',
       },
       animation: {

@@ -27,14 +27,14 @@ const AppRouter = () => {
           position="top-right"
           toastOptions={{
             style: {
-              background: '#1f1f21',
-              color: '#f1f1f1',
-              border: '1px solid rgba(255,255,255,0.08)',
+              background: '#FEFEFF',
+              color: '#014C33',
+              border: '1px solid rgba(1,76,51,0.12)',
               fontSize: '13px',
-              borderRadius: '8px',
+              borderRadius: '10px',
             },
-            success: { iconTheme: { primary: '#22c55e', secondary: '#1f1f21' } },
-            error: { iconTheme: { primary: '#ef4444', secondary: '#1f1f21' } },
+            success: { iconTheme: { primary: '#22c55e', secondary: '#FEFEFF' } },
+            error: { iconTheme: { primary: '#ef4444', secondary: '#FEFEFF' } },
           }}
         />
 

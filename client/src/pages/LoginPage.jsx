@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Navigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
-import { Zap, Eye, EyeOff, ArrowRight } from 'lucide-react';
+import { LayoutDashboard, Eye, EyeOff, ArrowRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import Button from '../components/ui/Button';
 import toast from 'react-hot-toast';
@@ -40,7 +40,7 @@ const LoginPage = () => {
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(1,76,51,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(1,76,51,0.1) 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
         }}
       />
@@ -54,9 +54,9 @@ const LoginPage = () => {
         {/* Logo */}
         <div className="flex items-center gap-2.5 mb-8">
           <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-            <Zap size={16} className="text-white" />
+            <LayoutDashboard size={16} className="text-white" />
           </div>
-          <span className="font-semibold text-text-primary text-base">VisitorFlow</span>
+          <span className="font-semibold text-text-primary text-base">LIVZO Command Center</span>
         </div>
 
         {/* Card */}
@@ -70,7 +70,7 @@ const LoginPage = () => {
               <label className="vf-label">Email address</label>
               <input
                 type="email"
-                placeholder="admin@visitorflow.com"
+                placeholder="admin@livzo.com"
                 autoComplete="email"
                 className={`vf-input ${errors.email ? 'vf-input-error' : ''}`}
                 {...register('email', {

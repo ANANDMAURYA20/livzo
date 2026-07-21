@@ -24,7 +24,7 @@ import Badge from '../components/ui/Badge';
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-panel border border-white/[0.08] rounded-btn px-3 py-2 text-xs shadow-modal">
+    <div className="bg-panel border border-border rounded-btn px-3 py-2 text-xs shadow-modal">
       <p className="text-text-muted mb-1">{label}</p>
       {payload.map((p) => (
         <p key={p.name} className="text-text-primary" style={{ color: p.color }}>
@@ -87,7 +87,7 @@ const AnalyticsPage = () => {
       {/* KPI Row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: 'Total Inquiries', value: overview?.total, icon: Users, color: '#3b82f6' },
+          { label: 'Total Inquiries', value: overview?.total, icon: Users, color: '#016B46' },
           { label: 'Conversion Rate', value: `${conversionRate}%`, icon: TrendingUp, color: '#22c55e' },
           { label: 'Rejection Rate', value: `${rejectionRate}%`, icon: TrendingUp, color: '#ef4444' },
           { label: 'Visit Scheduled', value: overview?.visitScheduled, icon: CalendarCheck, color: '#a855f7' },
@@ -120,11 +120,11 @@ const AnalyticsPage = () => {
           ) : (
             <ResponsiveContainer width="100%" height={200}>
               <LineChart data={monthly}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
-                <XAxis dataKey="month" tick={{ fill: '#71717a', fontSize: 11 }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fill: '#71717a', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(1,76,51,0.08)" />
+                <XAxis dataKey="month" tick={{ fill: 'rgba(1,76,51,0.48)', fontSize: 11 }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fill: 'rgba(1,76,51,0.48)', fontSize: 11 }} axisLine={false} tickLine={false} />
                 <Tooltip content={<CustomTooltip />} />
-                <Line type="monotone" dataKey="count" stroke="#3b82f6" strokeWidth={2} dot={{ fill: '#3b82f6', r: 3 }} activeDot={{ r: 5 }} />
+                <Line type="monotone" dataKey="count" stroke="#016B46" strokeWidth={2} dot={{ fill: '#016B46', r: 3 }} activeDot={{ r: 5 }} />
               </LineChart>
             </ResponsiveContainer>
           )}
@@ -174,11 +174,11 @@ const AnalyticsPage = () => {
           ) : (
             <ResponsiveContainer width="100%" height={200}>
               <BarChart data={branchData} barSize={12} barGap={2}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
-                <XAxis dataKey="branch" tick={{ fill: '#71717a', fontSize: 10 }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fill: '#71717a', fontSize: 10 }} axisLine={false} tickLine={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(1,76,51,0.08)" />
+                <XAxis dataKey="branch" tick={{ fill: 'rgba(1,76,51,0.48)', fontSize: 10 }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fill: 'rgba(1,76,51,0.48)', fontSize: 10 }} axisLine={false} tickLine={false} />
                 <Tooltip content={<CustomTooltip />} />
-                <Bar dataKey="total" name="Total" fill="rgba(59,130,246,0.5)" radius={[3, 3, 0, 0]} />
+                <Bar dataKey="total" name="Total" fill="rgba(1,107,70,0.5)" radius={[3, 3, 0, 0]} />
                 <Bar dataKey="joined" name="Joined" fill="#22c55e" radius={[3, 3, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
@@ -204,7 +204,7 @@ const AnalyticsPage = () => {
                   key={v._id}
                   initial={{ opacity: 0, x: -8 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="flex items-center justify-between p-3 bg-panel rounded-btn border border-white/[0.06]"
+                  className="flex items-center justify-between p-3 bg-panel rounded-btn border border-border"
                 >
                   <div>
                     <p className="text-sm font-medium text-text-primary">{v.name}</p>

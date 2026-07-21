@@ -16,11 +16,11 @@ const Navbar = ({ onMobileMenuOpen }) => {
     const path = location.pathname;
     if (path.includes('/inquiries/') && path.includes('/edit')) return 'Edit Inquiry';
     if (path.includes('/inquiries/') && path !== '/inquiries' && path !== '/inquiries/create') return 'Inquiry Details';
-    return PAGE_TITLES[path] || 'VisitorFlow';
+    return PAGE_TITLES[path] || 'LIVZO Command Center';
   };
 
   return (
-    <header className="flex items-center justify-between px-4 md:px-6 py-3.5 border-b border-white/[0.06] bg-card">
+    <header className="flex items-center justify-between px-4 md:px-6 py-3.5 border-b border-white/[0.08] bg-card">
       <div className="flex items-center gap-3">
         {/* Mobile menu trigger */}
         <button

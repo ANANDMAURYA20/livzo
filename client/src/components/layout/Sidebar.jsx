@@ -7,7 +7,6 @@ import {
   BarChart3,
   Settings,
   LogOut,
-  Zap,
   ChevronLeft,
   Menu,
 } from 'lucide-react';
@@ -34,13 +33,13 @@ const Sidebar = ({ collapsed, onToggle, mobileOpen, onMobileClose }) => {
   const SidebarContent = ({ mini = false }) => (
     <div className="flex flex-col h-full">
       {/* Logo */}
-      <div className={`flex items-center gap-3 px-4 py-4 border-b border-white/[0.06] ${mini ? 'justify-center' : ''}`}>
+      <div className={`flex items-center gap-3 px-4 py-4 border-b border-white/[0.08] ${mini ? 'justify-center' : ''}`}>
         <div className="w-7 h-7 bg-accent rounded-lg flex items-center justify-center flex-shrink-0">
-          <Zap size={14} className="text-white" />
+          <LayoutDashboard size={14} className="text-white" />
         </div>
         {!mini && (
           <span className="font-semibold text-text-primary text-sm tracking-tight">
-            VisitorFlow
+            LIVZO
           </span>
         )}
       </div>
@@ -64,7 +63,7 @@ const Sidebar = ({ collapsed, onToggle, mobileOpen, onMobileClose }) => {
       </nav>
 
       {/* User + Logout */}
-      <div className="px-2 pb-3 border-t border-white/[0.06] pt-3 space-y-1">
+      <div className="px-2 pb-3 border-t border-white/[0.08] pt-3 space-y-1">
         {!mini && (
           <div className="flex items-center gap-3 px-3 py-2 rounded-btn">
             <div className="w-7 h-7 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
@@ -95,7 +94,7 @@ const Sidebar = ({ collapsed, onToggle, mobileOpen, onMobileClose }) => {
       <motion.aside
         animate={{ width: collapsed ? 56 : 220 }}
         transition={{ duration: 0.2, ease: 'easeInOut' }}
-        className="hidden md:flex flex-col flex-shrink-0 bg-card border-r border-white/[0.06] relative overflow-hidden"
+        className="hidden md:flex flex-col flex-shrink-0 bg-card border-r border-white/[0.08] relative overflow-hidden"
       >
         <SidebarContent mini={collapsed} />
 
@@ -126,7 +125,7 @@ const Sidebar = ({ collapsed, onToggle, mobileOpen, onMobileClose }) => {
               animate={{ x: 0 }}
               exit={{ x: -220 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
-              className="fixed left-0 top-0 h-full w-[220px] bg-card border-r border-white/[0.06] z-50 md:hidden"
+              className="fixed left-0 top-0 h-full w-[220px] bg-card border-r border-white/[0.08] z-50 md:hidden"
             >
               <SidebarContent />
             </motion.aside>
