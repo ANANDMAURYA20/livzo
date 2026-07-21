@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#FEFEFF',
+        bg: '#EAF5EF',
         card: '#FEFEFF',
         panel: 'rgba(1,107,70,0.04)',
         border: 'rgba(1,76,51,0.12)',
@@ -12,9 +12,11 @@ export default {
         accent: '#016B46',
         'accent-hover': '#014C33',
         'accent-active': '#014C33',
-        'text-primary': '#014C33',
-        'text-secondary': 'rgba(1,76,51,0.72)',
-        'text-muted': 'rgba(1,76,51,0.48)',
+        whatsapp: '#25D366',
+        edit: '#3B82F6',
+        'text-primary': '#0B120F',
+        'text-secondary': 'rgba(11,18,15,0.72)',
+        'text-muted': 'rgba(11,18,15,0.48)',
         danger: '#ef4444',
         success: '#22c55e',
         warning: '#f59e0b',
@@ -28,8 +30,8 @@ export default {
         badge: '6px',
       },
       boxShadow: {
-        card: '0 2px 8px rgba(1,76,51,0.04), 0 0 0 1px rgba(1,76,51,0.06)',
-        'card-hover': '0 8px 24px rgba(1,76,51,0.08), 0 0 0 1px rgba(1,76,51,0.12)',
+        card: '0 4px 20px rgba(1,107,70,0.05), 0 0 0 1px rgba(1,107,70,0.1)',
+        'card-hover': '0 8px 30px rgba(1,107,70,0.08), 0 0 0 1px rgba(1,107,70,0.15)',
         modal: '0 20px 60px rgba(0,0,0,0.6)',
       },
       animation: {

@@ -21,6 +21,8 @@ const Button = ({
     ghost: 'btn-ghost',
     danger: 'btn-danger',
     accent: 'btn-accent',
+    whatsapp: 'btn-whatsapp',
+    edit: 'btn-edit',
     icon: 'btn-icon',
   };
 

@@ -26,8 +26,8 @@
   }
 
   ::selection {
-    background: rgba(1, 107, 70, 0.2);
-    color: #FEFEFF;
+    background: rgba(1, 107, 70, 0.15);
+    color: #0B120F;
   }
 
   ::-webkit-scrollbar {
@@ -96,6 +96,14 @@
     @apply btn p-2 rounded-btn hover:bg-[rgba(1,76,51,0.05)] text-text-muted hover:text-text-primary;
   }
 
+  .btn-whatsapp {
+    @apply btn bg-[#25D366] hover:bg-[#25D366]/90 text-[#FEFEFF] active:scale-[0.98] px-4 py-2 text-sm rounded-[10px] shadow-sm;
+  }
+
+  .btn-edit {
+    @apply btn bg-transparent border border-[#3B82F6]/30 text-[#3B82F6] hover:bg-[#3B82F6]/10 active:scale-[0.98] px-4 py-2 text-sm rounded-[10px];
+  }
+
   /* Inputs */
   .vf-input {
     @apply w-full bg-panel border border-border rounded-btn px-3 py-2.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-[rgba(1,107,70,0.25)] transition-all duration-150;
@@ -152,7 +160,7 @@
   }
 
   .vf-table tbody tr {
-    @apply transition-colors duration-100 hover:bg-panel;
+    @apply transition-colors duration-100 hover:bg-[rgba(1,107,70,0.04)];
   }
 
   /* Dividers */

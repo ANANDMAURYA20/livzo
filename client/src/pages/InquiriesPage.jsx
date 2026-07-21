@@ -217,11 +217,11 @@ const InquiriesPage = () => {
                         <Link to={`/inquiries/${inq._id}`} className="btn-icon" title="View">
                           <Eye size={13} />
                         </Link>
-                        <Link to={`/inquiries/${inq._id}/edit`} className="btn-icon" title="Edit">
+                        <Link to={`/inquiries/${inq._id}/edit`} className="btn-icon hover:text-[#3B82F6]" title="Edit">
                           <Edit2 size={13} />
                         </Link>
                         <button
-                          className="btn-icon hover:text-success"
+                          className="btn-icon hover:text-[#25D366]"
                           title="WhatsApp"
                           onClick={() => setWhatsappTarget(inq)}
                         >

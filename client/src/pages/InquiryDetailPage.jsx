@@ -129,14 +129,14 @@ const InquiryDetailPage = () => {
               {STATUSES.map((s) => <option key={s} value={s}>{s}</option>)}
             </select>
             <Button
-              variant="secondary"
+              variant="whatsapp"
               size="sm"
               icon={MessageCircle}
               onClick={() => setShowWhatsApp(true)}
             >
               WhatsApp
             </Button>
-            <Link to={`/inquiries/${id}/edit`} className="btn-secondary btn-sm flex items-center gap-2">
+            <Link to={`/inquiries/${id}/edit`} className="btn-edit btn-sm flex items-center gap-2">
               <Edit2 size={13} /> Edit
             </Link>
             <Button
