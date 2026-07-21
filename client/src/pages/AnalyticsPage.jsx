@@ -78,7 +78,7 @@ const AnalyticsPage = () => {
     : 0;
 
   return (
-    <div className="space-y-6 max-w-7xl">
+    <div className="space-y-6 w-full">
       <div>
         <h2 className="text-lg font-medium text-text-primary">Analytics</h2>
         <p className="text-xs text-text-muted mt-0.5">Performance overview and trends</p>

@@ -32,8 +32,13 @@ const getOverview = async (req, res, next) => {
 // @access  Private
 const getMonthly = async (req, res, next) => {
   try {
+    const sixMonthsAgo = new Date();
+    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 5);
+    sixMonthsAgo.setDate(1);
+    sixMonthsAgo.setHours(0, 0, 0, 0);
+
     const data = await Inquiry.aggregate([
-      { $match: { isDeleted: false } },
+      { $match: { isDeleted: false, createdAt: { $gte: sixMonthsAgo } } },
       {
         $group: {
           _id: {
@@ -44,16 +49,25 @@ const getMonthly = async (req, res, next) => {
         },
       },
       { $sort: { '_id.year': 1, '_id.month': 1 } },
-      { $limit: 12 },
     ]);
 
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-    const formatted = data.map((d) => ({
-      month: months[d._id.month - 1],
-      year: d._id.year,
-      count: d.count,
-    }));
+    
+    // Fill in missing months to ensure exactly 6 months are returned in order
+    const formatted = [];
+    for (let i = 0; i < 6; i++) {
+      const d = new Date();
+      d.setMonth(d.getMonth() - (5 - i));
+      const year = d.getFullYear();
+      const monthIndex = d.getMonth() + 1; // 1-12
+      
+      const found = data.find(x => x._id.year === year && x._id.month === monthIndex);
+      formatted.push({
+        month: months[monthIndex - 1],
+        year: year,
+        count: found ? found.count : 0
+      });
+    }
 
     res.status(200).json({ success: true, data: formatted });
   } catch (error) {

@@ -92,28 +92,30 @@ const ADMIN_FEATURES = [
 
 const LandingPage = () => {
   return (
-    <div className="min-h-screen bg-bg text-text-primary">
-      {/* Background grid */}
-      <div
-        className="fixed inset-0 opacity-[0.025] pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(rgba(1,76,51,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(1,76,51,0.15) 1px, transparent 1px)`,
-          backgroundSize: '48px 48px',
-        }}
-      />
+    <div className="min-h-screen bg-bg text-text-primary flex flex-col">
+      {/* Dark Hero Section Wrapper */}
+      <div className="bg-[#014C33] relative z-0 pb-16">
+        {/* Background grid */}
+        <div
+          className="absolute inset-0 opacity-[0.05] pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
+            backgroundSize: '48px 48px',
+          }}
+        />
 
-      {/* Navbar */}
-      <nav className="sticky top-0 z-40 bg-bg/80 backdrop-blur-md border-b border-white/[0.06]">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 flex items-center justify-between h-14">
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 bg-accent rounded-lg flex items-center justify-center">
-              <LayoutDashboard size={14} className="text-white" />
-            </div>
-            <span className="font-semibold text-sm">LIVZO Command Center</span>
+        {/* Navbar */}
+        <nav className="sticky top-0 z-40 bg-[#014C33]/90 backdrop-blur-md border-b border-white/[0.1]">
+          <div className="max-w-6xl mx-auto px-4 md:px-6 flex items-center justify-between h-16">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center border border-white/20">
+                <LayoutDashboard size={16} className="text-white" />
+              </div>
+              <span className="font-semibold text-white text-base tracking-tight">LIVZO Command Center</span>
           </div>
           <div className="flex items-center gap-3">
-            <Link to="/login" className="btn-ghost text-sm">Log in</Link>
-            <Link to="/dashboard" className="btn-primary text-sm">
+            <Link to="/login" className="btn-ghost text-white hover:bg-white/10 text-sm">Log in</Link>
+            <Link to="/dashboard" className="btn bg-white text-[#014C33] hover:bg-white/90 px-4 py-2 text-sm rounded-[10px] shadow-sm font-semibold">
               Open Dashboard
             </Link>
           </div>
@@ -121,81 +123,81 @@ const LandingPage = () => {
       </nav>
 
       {/* Hero */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 pt-20 pb-16">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 pt-24 pb-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left: Copy */}
           <div>
-            <motion.div {...fadeUp(0)} className="mb-5">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-xs text-accent font-medium">
-                <Shield size={11} />
+            <motion.div {...fadeUp(0)} className="mb-6">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs text-white font-medium tracking-wide">
+                <Shield size={12} />
                 Internal Operations Platform
               </span>
             </motion.div>
 
             <motion.h1
               {...fadeUp(0.08)}
-              className="text-4xl md:text-5xl font-semibold text-white leading-[1.15] tracking-tight mb-5 text-balance"
+              className="text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6 text-balance"
             >
               Manage Every Inquiry.
               <br />
               Schedule Every Visit.
               <br />
-              <span className="text-text-secondary">Welcome Every Resident.</span>
+              <span className="text-white/60">Welcome Every Resident.</span>
             </motion.h1>
 
-            <motion.p {...fadeUp(0.14)} className="text-base text-text-muted max-w-lg mb-8 leading-relaxed">
+            <motion.p {...fadeUp(0.14)} className="text-lg md:text-xl text-white/80 max-w-xl mb-10 leading-relaxed font-light">
               A centralized platform for managing inquiries, scheduling property visits, tracking admissions, generating AI-powered follow-ups, and monitoring every lead across all LIVZO branches.
             </motion.p>
 
-            <motion.div {...fadeUp(0.18)} className="flex items-center gap-3 flex-wrap">
-              <Link to="/dashboard" className="btn-primary btn-lg flex items-center gap-2">
-                Open Dashboard <ArrowRight size={15} />
+            <motion.div {...fadeUp(0.18)} className="flex items-center gap-4 flex-wrap">
+              <Link to="/dashboard" className="btn bg-white text-[#014C33] hover:bg-white/90 px-6 py-3 text-base rounded-[10px] shadow-lg font-semibold flex items-center gap-2">
+                Open Dashboard <ArrowRight size={18} />
               </Link>
-              <Link to="/inquiries/create" className="btn-secondary btn-lg flex items-center gap-2">
-                Create Inquiry <ChevronRight size={15} />
+              <Link to="/inquiries/create" className="btn bg-white/10 text-white hover:bg-white/20 border border-white/20 px-6 py-3 text-base rounded-[10px] font-semibold flex items-center gap-2">
+                Create Inquiry <ChevronRight size={18} />
               </Link>
             </motion.div>
           </div>
 
-          {/* Right: Mini CRM Dashboard */}
+          {/* Right: Mini CRM Dashboard (Light Theme) */}
           <motion.div {...fadeUp(0.12)}>
-            <div className="vf-card overflow-hidden">
-              <div className="bg-panel border-b border-white/[0.06] px-4 py-2.5 flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
-                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
-                <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
-                <span className="text-xs text-text-muted ml-2">LIVZO — Command Center</span>
+            <div className="bg-card rounded-card shadow-modal overflow-hidden border border-border">
+              <div className="bg-[#f8fafc] border-b border-border px-4 py-3 flex items-center gap-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+                <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
+                <span className="text-[11px] font-medium text-text-muted ml-2">LIVZO — Command Center</span>
               </div>
-              <div className="p-4">
+              <div className="p-4 bg-white">
                 {/* Mini stat row */}
-                <div className="grid grid-cols-3 gap-2 mb-3">
+                <div className="grid grid-cols-3 gap-3 mb-4">
                   {[
                     { label: "Today's Inquiries", val: '14', color: '#016B46' },
                     { label: 'Pending Follow-ups', val: '8', color: '#f59e0b' },
                     { label: 'Visits Today', val: '5', color: '#a855f7' },
                   ].map((s) => (
-                    <div key={s.label} className="bg-panel rounded-card p-3 border border-white/[0.06]">
-                      <p className="text-[10px] text-text-muted mb-1">{s.label}</p>
-                      <p className="text-lg font-semibold" style={{ color: s.color }}>{s.val}</p>
+                    <div key={s.label} className="bg-white rounded-card p-3 border border-border shadow-sm">
+                      <p className="eyebrow mb-1.5">{s.label}</p>
+                      <p className="text-xl font-bold tracking-tight" style={{ color: s.color }}>{s.val}</p>
                     </div>
                   ))}
                 </div>
                 {/* Mini table */}
-                <div className="bg-panel rounded-card border border-white/[0.06] overflow-hidden">
-                  <div className="px-3 py-2 border-b border-white/[0.06] flex items-center justify-between">
-                    <p className="text-[10px] font-medium text-text-primary">Recent Inquiries</p>
+                <div className="bg-white rounded-card border border-border overflow-hidden shadow-sm">
+                  <div className="px-3 py-2.5 border-b border-border flex items-center justify-between bg-bg">
+                    <p className="text-xs font-semibold text-text-primary tracking-tight">Recent Inquiries</p>
                     <div className="flex items-center gap-1.5">
-                      <div className="w-16 h-5 rounded-badge bg-white/[0.04] border border-white/[0.06] flex items-center px-1.5">
-                        <Search size={8} className="text-text-muted" />
-                        <span className="text-[8px] text-text-muted ml-1">Search</span>
+                      <div className="h-6 rounded-btn bg-white border border-border flex items-center px-2">
+                        <Search size={10} className="text-text-muted" />
+                        <span className="text-[9px] text-text-muted ml-1.5 font-medium">Search</span>
                       </div>
                     </div>
                   </div>
-                  <table className="w-full text-[10px]">
+                  <table className="w-full text-[11px]">
                     <thead>
-                      <tr className="border-b border-white/[0.04]">
+                      <tr className="border-b border-border bg-[rgba(1,107,70,0.02)]">
                         {['Name', 'Source', 'Branch', 'Status'].map(h => (
-                          <th key={h} className="text-left px-3 py-1.5 text-text-muted font-medium">{h}</th>
+                          <th key={h} className="text-left px-3 py-2 text-text-muted font-semibold uppercase tracking-wider text-[9px]">{h}</th>
                         ))}
                       </tr>
                     </thead>
@@ -206,16 +208,16 @@ const LandingPage = () => {
                         ['Rohan Gupta', 'Walk-in', 'Whitefield', 'Visit Scheduled'],
                         ['Sneha Patel', 'Phone', 'HSR Layout', 'Joined'],
                       ].map(([name, source, branch, status]) => (
-                        <tr key={name} className="border-b border-white/[0.03] hover:bg-white/[0.02]">
-                          <td className="px-3 py-2 text-text-primary font-medium">{name}</td>
-                          <td className="px-3 py-2 text-text-secondary">{source}</td>
-                          <td className="px-3 py-2 text-text-secondary">{branch}</td>
-                          <td className="px-3 py-2">
-                            <span className={`inline-flex items-center px-1.5 py-0.5 rounded-badge text-[9px] font-medium ${
-                              status === 'New' ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' :
-                              status === 'Contacted' ? 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/20' :
-                              status === 'Visit Scheduled' ? 'bg-purple-500/10 text-purple-400 border border-purple-500/20' :
-                              'bg-green-500/10 text-green-400 border border-green-500/20'
+                        <tr key={name} className="border-b border-border hover:bg-[rgba(1,107,70,0.02)]">
+                          <td className="px-3 py-2.5 text-text-primary font-medium">{name}</td>
+                          <td className="px-3 py-2.5 text-text-secondary">{source}</td>
+                          <td className="px-3 py-2.5 text-text-secondary">{branch}</td>
+                          <td className="px-3 py-2.5">
+                            <span className={`badge ${
+                              status === 'New' ? 'badge-new' :
+                              status === 'Contacted' ? 'badge-contacted' :
+                              status === 'Visit Scheduled' ? 'badge-visit' :
+                              'badge-joined'
                             }`}>{status}</span>
                           </td>
                         </tr>
@@ -228,28 +230,29 @@ const LandingPage = () => {
           </motion.div>
         </div>
       </section>
+      </div>
 
       {/* Dashboard Preview */}
       <section className="max-w-6xl mx-auto px-4 md:px-6 mb-24">
-        <motion.div {...fadeUp()} className="mb-10 text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">
+        <motion.div {...fadeUp()} className="mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">
             Your operations command center
           </h2>
-          <p className="text-text-muted text-sm max-w-md mx-auto">
+          <p className="text-text-secondary text-base max-w-lg mx-auto">
             A real-time overview of every inquiry, visit, admission, and follow-up across all LIVZO branches.
           </p>
         </motion.div>
 
         <motion.div {...fadeUp(0.1)}>
           <div className="vf-card overflow-hidden">
-            <div className="bg-panel border-b border-white/[0.06] px-4 py-3 flex items-center gap-2">
-              <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
-              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
-              <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
-              <span className="text-xs text-text-muted ml-2">LIVZO Command Center — Dashboard</span>
+            <div className="bg-bg border-b border-border px-4 py-3 flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
+              <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+              <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
+              <span className="text-[11px] font-medium text-text-muted ml-2">LIVZO Command Center — Dashboard</span>
             </div>
 
-            <div className="p-6">
+            <div className="p-6 bg-white">
               {/* Stat cards */}
               <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-5">
                 {[
@@ -259,14 +262,14 @@ const LandingPage = () => {
                   { label: 'Admissions (MTD)', val: '42', color: '#22c55e', icon: UserPlus },
                   { label: 'Revenue (MTD)', val: '₹7.2L', color: '#016B46', icon: TrendingUp },
                 ].map((s) => (
-                  <div key={s.label} className="bg-panel rounded-card p-4 border border-white/[0.06]">
+                  <div key={s.label} className="bg-white rounded-card p-4 border border-border shadow-sm">
                     <div className="flex items-center justify-between mb-2">
-                      <p className="text-xs text-text-muted">{s.label}</p>
-                      <div className="w-6 h-6 rounded-lg bg-white/[0.05] flex items-center justify-center">
+                      <p className="eyebrow">{s.label}</p>
+                      <div className="w-6 h-6 rounded-lg bg-[rgba(1,107,70,0.06)] flex items-center justify-center">
                         <s.icon size={12} style={{ color: s.color }} />
                       </div>
                     </div>
-                    <p className="text-xl font-semibold" style={{ color: s.color }}>{s.val}</p>
+                    <p className="text-xl font-bold tracking-tight" style={{ color: s.color }}>{s.val}</p>
                   </div>
                 ))}
               </div>
@@ -274,15 +277,15 @@ const LandingPage = () => {
               {/* Charts row */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5">
                 {/* Line chart mock */}
-                <div className="md:col-span-2 bg-panel rounded-card border border-white/[0.06] p-4">
-                  <div className="flex items-center justify-between mb-3">
+                <div className="md:col-span-2 bg-white rounded-card border border-border p-4 shadow-sm">
+                  <div className="flex items-center justify-between mb-4">
                     <div>
-                      <p className="text-xs font-medium text-text-primary">Monthly Inquiries</p>
-                      <p className="text-[10px] text-text-muted">Inquiry volume over the last 6 months</p>
+                      <p className="text-sm font-semibold text-text-primary tracking-tight">Monthly Inquiries</p>
+                      <p className="text-[11px] text-text-secondary">Inquiry volume over the last 6 months</p>
                     </div>
-                    <span className="text-[10px] text-text-muted bg-white/[0.04] px-2 py-1 rounded-badge border border-white/[0.06]">6 months</span>
+                    <span className="text-[10px] text-text-muted bg-[rgba(1,107,70,0.04)] px-2 py-1 rounded-badge border border-border font-medium">6 months</span>
                   </div>
-                  <div className="h-28 flex items-end gap-1">
+                  <div className="h-28 flex items-end gap-1.5">
                     {[
                       { month: 'Feb', h: 35 },
                       { month: 'Mar', h: 52 },
@@ -291,21 +294,21 @@ const LandingPage = () => {
                       { month: 'Jun', h: 58 },
                       { month: 'Jul', h: 82 },
                     ].map((bar) => (
-                      <div key={bar.month} className="flex-1 flex flex-col items-center gap-1">
+                      <div key={bar.month} className="flex-1 flex flex-col items-center gap-1.5">
                         <div
-                          className="w-full rounded-t-sm bg-accent/60"
+                          className="w-full rounded-t-[4px] bg-accent/80"
                           style={{ height: `${bar.h}%` }}
                         />
-                        <span className="text-[9px] text-text-muted">{bar.month}</span>
+                        <span className="text-[10px] font-medium text-text-muted">{bar.month}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* Status distribution */}
-                <div className="bg-panel rounded-card border border-white/[0.06] p-4">
-                  <p className="text-xs font-medium text-text-primary mb-3">Status Distribution</p>
-                  <div className="space-y-2.5">
+                <div className="bg-white rounded-card border border-border p-4 shadow-sm">
+                  <p className="text-sm font-semibold text-text-primary mb-4 tracking-tight">Status Distribution</p>
+                  <div className="space-y-3">
                     {[
                       { status: 'New', count: 48, color: '#016B46', pct: 34 },
                       { status: 'Contacted', count: 31, color: '#f59e0b', pct: 22 },
@@ -314,11 +317,11 @@ const LandingPage = () => {
                       { status: 'Rejected', count: 13, color: '#ef4444', pct: 9 },
                     ].map((item) => (
                       <div key={item.status}>
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-[10px] text-text-secondary">{item.status}</span>
-                          <span className="text-[10px] text-text-muted">{item.count}</span>
+                        <div className="flex items-center justify-between mb-1.5">
+                          <span className="text-[11px] font-medium text-text-secondary">{item.status}</span>
+                          <span className="text-[11px] font-bold text-text-primary">{item.count}</span>
                         </div>
-                        <div className="h-1.5 bg-white/[0.04] rounded-full overflow-hidden">
+                        <div className="h-1.5 bg-[rgba(1,107,70,0.06)] rounded-full overflow-hidden">
                           <div
                             className="h-full rounded-full transition-all duration-500"
                             style={{ width: `${item.pct}%`, backgroundColor: item.color }}
@@ -331,26 +334,26 @@ const LandingPage = () => {
               </div>
 
               {/* Recent inquiries table */}
-              <div className="bg-panel rounded-card border border-white/[0.06] overflow-hidden">
-                <div className="px-4 py-3 border-b border-white/[0.06] flex items-center justify-between">
-                  <p className="text-xs font-medium text-text-primary">Recent Inquiries</p>
+              <div className="bg-white rounded-card border border-border overflow-hidden shadow-sm">
+                <div className="px-4 py-3 border-b border-border flex items-center justify-between bg-bg">
+                  <p className="text-sm font-semibold text-text-primary tracking-tight">Recent Inquiries</p>
                   <div className="flex items-center gap-2">
-                    <div className="flex items-center gap-1.5 bg-white/[0.04] border border-white/[0.06] rounded-btn px-2.5 py-1.5">
-                      <Search size={10} className="text-text-muted" />
-                      <span className="text-[10px] text-text-muted">Search inquiries...</span>
+                    <div className="flex items-center gap-1.5 bg-white border border-border rounded-btn px-2.5 py-1.5">
+                      <Search size={12} className="text-text-muted" />
+                      <span className="text-[11px] text-text-muted font-medium">Search inquiries...</span>
                     </div>
-                    <div className="flex items-center gap-1 bg-white/[0.04] border border-white/[0.06] rounded-btn px-2 py-1.5">
-                      <Filter size={10} className="text-text-muted" />
-                      <span className="text-[10px] text-text-muted">Filters</span>
+                    <div className="flex items-center gap-1 bg-white border border-border rounded-btn px-2.5 py-1.5">
+                      <Filter size={12} className="text-text-muted" />
+                      <span className="text-[11px] text-text-muted font-medium">Filters</span>
                     </div>
                   </div>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full text-xs">
                     <thead>
-                      <tr className="border-b border-white/[0.04]">
+                      <tr className="border-b border-border bg-[rgba(1,107,70,0.02)]">
                         {['Name', 'Source', 'Branch', 'Budget', 'Status', 'Follow-up', 'Created'].map(h => (
-                          <th key={h} className="text-left px-4 py-2 text-text-muted font-medium">{h}</th>
+                          <th key={h} className="text-left px-4 py-2.5 text-text-muted font-semibold uppercase tracking-wider text-[10px]">{h}</th>
                         ))}
                       </tr>
                     </thead>
@@ -362,20 +365,20 @@ const LandingPage = () => {
                         ['Sneha Patel', 'Phone', 'HSR Layout', '₹9,500', 'Joined', 'Completed', '2d ago'],
                         ['Vikram Singh', 'Website', 'BTM Layout', '₹15,000', 'Contacted', 'Pending', '3d ago'],
                       ].map(([name, source, branch, budget, status, followup, created]) => (
-                        <tr key={name} className="border-b border-white/[0.03] hover:bg-white/[0.02]">
-                          <td className="px-4 py-2.5 text-text-primary font-medium">{name}</td>
-                          <td className="px-4 py-2.5 text-text-secondary">
-                            <span className="inline-flex items-center gap-1">
-                              {source === 'Website' && <Globe size={10} className="text-text-muted" />}
-                              {source === 'WhatsApp' && <MessageCircle size={10} className="text-text-muted" />}
-                              {source === 'Walk-in' && <Users size={10} className="text-text-muted" />}
-                              {source === 'Phone' && <Phone size={10} className="text-text-muted" />}
+                        <tr key={name} className="border-b border-border hover:bg-[rgba(1,107,70,0.02)]">
+                          <td className="px-4 py-3 text-text-primary font-semibold">{name}</td>
+                          <td className="px-4 py-3 text-text-secondary">
+                            <span className="inline-flex items-center gap-1.5">
+                              {source === 'Website' && <Globe size={12} className="text-text-muted" />}
+                              {source === 'WhatsApp' && <MessageCircle size={12} className="text-text-muted" />}
+                              {source === 'Walk-in' && <Users size={12} className="text-text-muted" />}
+                              {source === 'Phone' && <Phone size={12} className="text-text-muted" />}
                               {source}
                             </span>
                           </td>
-                          <td className="px-4 py-2.5 text-text-secondary">{branch}</td>
-                          <td className="px-4 py-2.5 text-text-secondary">{budget}</td>
-                          <td className="px-4 py-2.5">
+                          <td className="px-4 py-3 text-text-secondary">{branch}</td>
+                          <td className="px-4 py-3 text-text-secondary font-medium">{budget}</td>
+                          <td className="px-4 py-3">
                             <span className={`badge ${
                               status === 'New' ? 'badge-new' :
                               status === 'Contacted' ? 'badge-contacted' :
@@ -383,26 +386,26 @@ const LandingPage = () => {
                               'badge-joined'
                             }`}>{status}</span>
                           </td>
-                          <td className="px-4 py-2.5 text-text-muted">{followup}</td>
-                          <td className="px-4 py-2.5 text-text-muted">{created}</td>
+                          <td className="px-4 py-3 text-text-muted font-medium">{followup}</td>
+                          <td className="px-4 py-3 text-text-muted">{created}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
                 {/* Activity feed */}
-                <div className="px-4 py-3 border-t border-white/[0.06]">
-                  <p className="text-[10px] font-medium text-text-muted mb-2">Activity Feed</p>
-                  <div className="space-y-1.5">
+                <div className="px-4 py-4 border-t border-border bg-white">
+                  <p className="eyebrow mb-3">Activity Feed</p>
+                  <div className="space-y-2.5">
                     {[
                       { text: 'Priya Sharma moved to Contacted', time: '5m ago', color: '#f59e0b' },
                       { text: 'Visit scheduled for Rohan Gupta — Whitefield', time: '22m ago', color: '#a855f7' },
                       { text: 'New inquiry from website — Aarav Mehta', time: '2h ago', color: '#016B46' },
                     ].map((activity) => (
-                      <div key={activity.text} className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: activity.color }} />
-                        <span className="text-[10px] text-text-secondary flex-1">{activity.text}</span>
-                        <span className="text-[9px] text-text-muted">{activity.time}</span>
+                      <div key={activity.text} className="flex items-center gap-2.5">
+                        <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: activity.color }} />
+                        <span className="text-[11px] font-medium text-text-secondary flex-1">{activity.text}</span>
+                        <span className="text-[10px] text-text-muted font-medium">{activity.time}</span>
                       </div>
                     ))}
                   </div>
@@ -414,57 +417,57 @@ const LandingPage = () => {
       </section>
 
       {/* Features */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-24">
-        <motion.div {...fadeUp()} className="mb-10 text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-32">
+        <motion.div {...fadeUp()} className="mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">
             Everything your admissions team needs
           </h2>
-          <p className="text-text-muted text-sm max-w-md mx-auto">
+          <p className="text-text-secondary text-base max-w-xl mx-auto font-light">
             From capturing the first inquiry to welcoming a new resident, LIVZO Command Center gives your team complete control.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {FEATURES.map((f, i) => (
             <motion.div
               key={f.title}
               {...fadeUp(i * 0.05)}
-              className="vf-card-hover p-5"
+              className="vf-card-hover bg-white p-6"
             >
-              <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                <f.icon size={15} className="text-accent" />
+              <div className="w-10 h-10 rounded-lg bg-[rgba(1,107,70,0.08)] flex items-center justify-center mb-5">
+                <f.icon size={18} className="text-accent" />
               </div>
-              <h3 className="text-sm font-medium text-text-primary mb-2">{f.title}</h3>
-              <p className="text-xs text-text-muted leading-relaxed">{f.desc}</p>
+              <h3 className="text-base font-semibold text-text-primary mb-2.5 tracking-tight">{f.title}</h3>
+              <p className="text-sm text-text-secondary leading-relaxed">{f.desc}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* Workflow */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-24">
-        <motion.div {...fadeUp()} className="mb-10 text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-32">
+        <motion.div {...fadeUp()} className="mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">
             From inquiry to move-in
           </h2>
-          <p className="text-text-muted text-sm">Every lead follows a structured pipeline — no one falls through the cracks</p>
+          <p className="text-text-secondary text-base font-light">Every lead follows a structured pipeline — no one falls through the cracks</p>
         </motion.div>
 
         {/* Desktop: Horizontal */}
-        <div className="hidden md:flex items-start justify-center gap-0">
+        <div className="hidden md:flex items-start justify-center gap-2">
           {WORKFLOW_STEPS.map((step, i) => (
             <motion.div key={step.step} {...fadeUp(i * 0.08)} className="flex items-start">
-              <div className="flex flex-col items-center text-center w-36">
-                <div className="w-10 h-10 rounded-full bg-panel border border-white/[0.08] flex items-center justify-center mb-3">
-                  <span className="text-xs font-semibold text-accent">{step.step}</span>
+              <div className="flex flex-col items-center text-center w-40">
+                <div className="w-12 h-12 rounded-full bg-white shadow-sm border border-border flex items-center justify-center mb-4 relative z-10">
+                  <span className="text-sm font-bold text-accent">{step.step}</span>
                 </div>
-                <p className="text-sm font-medium text-text-primary mb-0.5">{step.label}</p>
-                <p className="text-xs text-text-muted">{step.desc}</p>
+                <p className="text-base font-semibold text-text-primary mb-1 tracking-tight">{step.label}</p>
+                <p className="text-sm text-text-secondary leading-relaxed">{step.desc}</p>
               </div>
               {i < WORKFLOW_STEPS.length - 1 && (
-                <div className="flex items-center mx-2 mt-4">
-                  <div className="h-px w-8 bg-white/[0.08]" />
-                  <ChevronRight size={12} className="text-text-muted" />
+                <div className="flex items-center mx-1 mt-6">
+                  <div className="h-px w-10 bg-border" />
+                  <ChevronRight size={14} className="text-text-muted" />
                 </div>
               )}
             </motion.div>
@@ -472,21 +475,21 @@ const LandingPage = () => {
         </div>
 
         {/* Mobile: Vertical */}
-        <div className="md:hidden space-y-0">
+        <div className="md:hidden space-y-0 pl-4">
           {WORKFLOW_STEPS.map((step, i) => (
             <motion.div key={step.step} {...fadeUp(i * 0.06)}>
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-5">
                 <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 rounded-full bg-panel border border-white/[0.08] flex items-center justify-center">
-                    <span className="text-xs font-semibold text-accent">{step.step}</span>
+                  <div className="w-10 h-10 rounded-full bg-white shadow-sm border border-border flex items-center justify-center relative z-10">
+                    <span className="text-xs font-bold text-accent">{step.step}</span>
                   </div>
                   {i < WORKFLOW_STEPS.length - 1 && (
-                    <div className="w-px h-8 bg-white/[0.08] mt-1" />
+                    <div className="w-px h-12 bg-border -mt-1" />
                   )}
                 </div>
-                <div className="pt-2">
-                  <p className="text-sm font-medium text-text-primary mb-0.5">{step.label}</p>
-                  <p className="text-xs text-text-muted">{step.desc}</p>
+                <div className="pt-2 pb-6">
+                  <p className="text-base font-semibold text-text-primary mb-1 tracking-tight">{step.label}</p>
+                  <p className="text-sm text-text-secondary">{step.desc}</p>
                 </div>
               </div>
             </motion.div>
@@ -502,17 +505,17 @@ const LandingPage = () => {
       </section>
 
       {/* AI WhatsApp Preview */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <motion.div {...fadeUp()}>
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-xs text-green-400 font-medium mb-4">
-              <Sparkles size={10} />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-xs text-green-600 font-bold mb-6 tracking-wide uppercase">
+              <Sparkles size={12} />
               AI Powered
             </span>
-            <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4 leading-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-5 leading-tight tracking-tight">
               Generate WhatsApp follow-ups in one click
             </h2>
-            <p className="text-text-muted text-sm leading-relaxed mb-5">
+            <p className="text-text-secondary text-base leading-relaxed mb-8 font-light">
               LIVZO's AI engine crafts personalized, professional WhatsApp messages that mention the prospect's name,
               preferred branch, visit date, and budget — ready to copy and send in seconds.
             </p>
@@ -523,51 +526,51 @@ const LandingPage = () => {
                 'Copy and send instantly from the inquiry detail page',
                 'Template fallback when AI is unavailable',
               ].map(point => (
-                <div key={point} className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-green-500/10 flex items-center justify-center flex-shrink-0">
-                    <Check size={9} className="text-green-400" />
+                <div key={point} className="flex items-center gap-3">
+                  <div className="w-5 h-5 rounded-full bg-green-500/10 flex items-center justify-center flex-shrink-0">
+                    <Check size={11} className="text-green-600" />
                   </div>
-                  <span className="text-xs text-text-secondary">{point}</span>
+                  <span className="text-sm font-medium text-text-secondary">{point}</span>
                 </div>
               ))}
             </div>
           </motion.div>
 
           <motion.div {...fadeUp(0.1)}>
-            <div className="vf-card p-5">
+            <div className="vf-card bg-white p-6">
               {/* Customer card */}
-              <div className="bg-panel rounded-btn p-3 border border-white/[0.06] mb-4">
+              <div className="bg-bg rounded-btn p-4 border border-border mb-5">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
                     <span className="text-xs font-semibold text-accent">AM</span>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-text-primary">Aarav Mehta</p>
-                    <p className="text-[10px] text-text-muted">Koramangala • ₹18,000/mo • Visit: 25 Jul</p>
+                    <p className="text-base font-semibold text-text-primary tracking-tight">Aarav Mehta</p>
+                    <p className="text-xs text-text-secondary">Koramangala • ₹18,000/mo • Visit: 25 Jul</p>
                   </div>
-                  <span className="badge-new ml-auto">New</span>
+                  <span className="badge-new ml-auto font-bold px-2 py-1">New</span>
                 </div>
               </div>
 
               <div className="flex items-center justify-between mb-3">
-                <p className="text-sm font-medium text-text-primary">Generated Message</p>
-                <span className="text-xs bg-green-500/10 text-green-400 px-2 py-0.5 rounded-full border border-green-500/20 flex items-center gap-1">
-                  <Sparkles size={9} />
+                <p className="text-sm font-semibold text-text-primary tracking-tight">Generated Message</p>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-green-500/10 text-green-600 px-2.5 py-1 rounded-full border border-green-500/20 flex items-center gap-1.5">
+                  <Sparkles size={10} />
                   AI
                 </span>
               </div>
-              <div className="bg-panel rounded-btn p-3 border border-white/[0.06] mb-3 text-xs text-text-secondary leading-relaxed">
-                Hi Aarav! 👋 Thank you for your inquiry at <strong className="text-text-primary">LIVZO Koramangala</strong>. We're excited to show you our{' '}
-                <strong className="text-text-primary">premium PG options</strong> within your budget of <strong className="text-text-primary">₹18,000/month</strong>.
-                Your visit is scheduled for <strong className="text-text-primary">25 Jul 2024</strong>. We look forward to welcoming you! 😊
+              <div className="bg-bg rounded-btn p-4 border border-border mb-4 text-sm text-text-secondary leading-relaxed font-light">
+                Hi Aarav! 👋 Thank you for your inquiry at <strong className="font-semibold text-text-primary">LIVZO Koramangala</strong>. We're excited to show you our{' '}
+                <strong className="font-semibold text-text-primary">premium PG options</strong> within your budget of <strong className="font-semibold text-text-primary">₹18,000/month</strong>.
+                Your visit is scheduled for <strong className="font-semibold text-text-primary">25 Jul 2024</strong>. We look forward to welcoming you! 😊
               </div>
-              <div className="flex gap-2">
-                <button className="btn-secondary btn-sm flex-1 flex items-center justify-center gap-1.5">
-                  <Copy size={12} />
+              <div className="flex gap-3">
+                <button className="btn-secondary btn-sm flex-1 flex items-center justify-center gap-2 py-2">
+                  <Copy size={14} />
                   Copy
                 </button>
-                <button className="btn-accent btn-sm flex-1 flex items-center justify-center gap-1.5">
-                  <RefreshCw size={12} />
+                <button className="btn-accent btn-sm flex-1 flex items-center justify-center gap-2 py-2">
+                  <RefreshCw size={14} />
                   Generate Again
                 </button>
               </div>
@@ -577,18 +580,18 @@ const LandingPage = () => {
       </section>
 
       {/* Analytics Preview */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-24">
-        <motion.div {...fadeUp()} className="mb-10 text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-32">
+        <motion.div {...fadeUp()} className="mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">
             Data-driven decisions for every branch
           </h2>
-          <p className="text-text-muted text-sm max-w-md mx-auto">
+          <p className="text-text-secondary text-base max-w-lg mx-auto font-light">
             Monitor conversion funnels, occupancy rates, and branch performance in real time.
           </p>
         </motion.div>
 
         <motion.div {...fadeUp(0.1)}>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {[
               { label: 'Monthly Inquiries', value: '142', sub: '+18% vs last month', icon: ClipboardList, color: '#016B46' },
               { label: 'Branch Performance', value: '6 branches', sub: 'Koramangala leads', icon: Building2, color: '#a855f7' },
@@ -597,15 +600,15 @@ const LandingPage = () => {
               { label: 'Upcoming Visits', value: '14', sub: 'This week', icon: CalendarCheck, color: '#a855f7' },
               { label: 'Follow-ups Pending', value: '23', sub: 'Across all branches', icon: Bell, color: '#ef4444' },
             ].map((stat, i) => (
-              <motion.div key={stat.label} {...fadeUp(i * 0.05)} className="vf-card-hover p-5">
-                <div className="flex items-center justify-between mb-3">
-                  <div className="w-8 h-8 rounded-lg bg-white/[0.05] flex items-center justify-center">
-                    <stat.icon size={14} style={{ color: stat.color }} />
+              <motion.div key={stat.label} {...fadeUp(i * 0.05)} className="vf-card-hover bg-white p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-[rgba(1,107,70,0.06)] flex items-center justify-center">
+                    <stat.icon size={18} style={{ color: stat.color }} />
                   </div>
                 </div>
-                <p className="text-xl font-semibold text-text-primary mb-1">{stat.value}</p>
-                <p className="text-xs text-text-muted mb-0.5">{stat.label}</p>
-                <p className="text-[10px] text-text-muted">{stat.sub}</p>
+                <p className="text-2xl font-bold text-text-primary mb-1 tracking-tight">{stat.value}</p>
+                <p className="text-sm font-semibold text-text-secondary mb-1">{stat.label}</p>
+                <p className="text-[11px] text-text-muted">{stat.sub}</p>
               </motion.div>
             ))}
           </div>
@@ -613,47 +616,47 @@ const LandingPage = () => {
       </section>
 
       {/* Admin Features */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-24">
-        <motion.div {...fadeUp()} className="mb-10 text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-32">
+        <motion.div {...fadeUp()} className="mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">
             Complete admin control
           </h2>
-          <p className="text-text-muted text-sm max-w-md mx-auto">
+          <p className="text-text-secondary text-base max-w-lg mx-auto font-light">
             Every tool your operations team needs — from inquiry management to AI-powered follow-ups.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {ADMIN_FEATURES.map((feature, i) => (
             <motion.div
               key={feature.label}
               {...fadeUp(i * 0.04)}
-              className="vf-card-hover p-4 flex flex-col items-start"
+              className="vf-card-hover bg-white p-5 flex flex-col items-start"
             >
-              <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center mb-3">
-                <feature.icon size={14} className="text-accent" />
+              <div className="w-10 h-10 rounded-lg bg-[rgba(1,107,70,0.08)] flex items-center justify-center mb-4">
+                <feature.icon size={18} className="text-accent" />
               </div>
-              <p className="text-sm font-medium text-text-primary mb-1">{feature.label}</p>
-              <p className="text-[10px] text-text-muted">{feature.desc}</p>
+              <p className="text-base font-semibold text-text-primary mb-1 tracking-tight">{feature.label}</p>
+              <p className="text-xs text-text-secondary leading-relaxed">{feature.desc}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-24">
-        <motion.div {...fadeUp()} className="vf-card p-10 text-center">
-          <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">
+      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-32">
+        <motion.div {...fadeUp()} className="vf-card bg-white p-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-5 tracking-tight">
             From first inquiry to move-in — everything in one place
           </h2>
-          <p className="text-text-muted text-sm mb-6">
+          <p className="text-text-secondary text-base mb-8 max-w-2xl mx-auto font-light">
             LIVZO Command Center is built for your admissions and operations team. Start managing your pipeline today.
           </p>
-          <div className="flex items-center justify-center gap-3">
-            <Link to="/dashboard" className="btn-primary btn-lg flex items-center gap-2">
-              Open Dashboard <ArrowRight size={15} />
+          <div className="flex items-center justify-center gap-4">
+            <Link to="/dashboard" className="btn-primary btn-lg flex items-center gap-2 px-8 py-3.5 shadow-sm font-semibold">
+              Open Dashboard <ArrowRight size={18} />
             </Link>
-            <Link to="/inquiries/create" className="btn-secondary btn-lg">
+            <Link to="/inquiries/create" className="btn-secondary btn-lg px-8 py-3.5 font-semibold">
               Create Inquiry
             </Link>
           </div>
@@ -661,16 +664,16 @@ const LandingPage = () => {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/[0.06] py-8">
+      <footer className="border-t border-border py-12">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="flex items-start justify-between flex-wrap gap-8">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-6 h-6 bg-accent rounded-md flex items-center justify-center">
-                  <LayoutDashboard size={12} className="text-white" />
+              <div className="flex items-center gap-2.5 mb-3">
+                <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
+                  <LayoutDashboard size={16} className="text-white" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-text-primary">LIVZO Command Center</p>
+                  <p className="text-base font-bold text-text-primary tracking-tight">LIVZO Command Center</p>
                 </div>
               </div>
               <p className="text-xs text-text-muted">Internal Visitor & Inquiry Management Platform</p>
