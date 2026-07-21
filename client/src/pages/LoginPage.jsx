@@ -17,7 +17,7 @@ const LoginPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ defaultValues: { email: 'admin@visitorflow.com', password: 'Admin@123' } });
+  } = useForm();
 
   if (isAuthenticated) return <Navigate to="/dashboard" replace />;
 
@@ -28,7 +28,7 @@ const LoginPage = () => {
       toast.success('Welcome back!');
       navigate('/dashboard');
     } catch (err) {
-      toast.error(err.response?.data?.message || 'Invalid credentials');
+      toast.error('Wrong credentials');
     } finally {
       setLoading(false);
     }
@@ -117,7 +117,7 @@ const LoginPage = () => {
 
         {/* Hint */}
         <p className="text-xs text-text-muted text-center mt-4">
-          Demo: admin@visitorflow.com / Admin@123
+          Demo: admin@livzo.com / Admin@123
         </p>
 
         {/* <p className="text-xs text-text-muted mt-6 text-center">
