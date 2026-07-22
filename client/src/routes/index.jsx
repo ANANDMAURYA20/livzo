@@ -7,6 +7,7 @@ import PublicRoute from './PublicRoute';
 import AppLayout from '../components/layout/AppLayout';
 
 import LandingPage from '../pages/LandingPage';
+import ContactPage from '../pages/ContactPage';
 import LoginPage from '../pages/LoginPage';
 import SignupPage from '../pages/SignupPage';
 import DashboardPage from '../pages/DashboardPage';
@@ -42,6 +43,7 @@ const AppRouter = () => {
           {/* Public (Guest Only) */}
           <Route element={<PublicRoute><Outlet /></PublicRoute>}>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
           </Route>

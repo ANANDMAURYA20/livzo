@@ -1,29 +1,9 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Users,
-  CalendarCheck,
-  Search,
-  BarChart3,
-  MessageCircle,
-  ArrowRight,
-  Check,
-  ChevronRight,
-  Building2,
-  Phone,
-  Globe,
-  UserPlus,
-  ClipboardList,
-  Shield,
-  Activity,
-  TrendingUp,
-  Filter,
-  Sparkles,
-  Copy,
-  RefreshCw,
-  Home,
-  LayoutDashboard,
-  Bell,
+  ArrowRight, CheckCircle2, ChevronDown, Utensils, Cctv, Phone, Mail, MapPin, Bus, CalendarHeart, HeartPulse, PartyPopper,
+  PhoneCall, HeartHandshake, ShieldCheck, Info, Check, Shield, Lock, Users, Sparkles
 } from 'lucide-react';
 
 const fadeUp = (delay = 0) => ({
@@ -33,69 +13,135 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.4, delay },
 });
 
-const FEATURES = [
+const BRANCHES = [
   {
-    icon: ClipboardList,
-    title: 'Inquiry Management',
-    desc: 'Capture every lead from website forms, WhatsApp, phone calls, and walk-ins — all in one unified inbox with full contact and budget details.',
+    id: 'yellow',
+    name: 'Yellow House',
+    type: 'Boys PG',
+    tagline: 'Best Boys PG near Science City, Ahmedabad',
+    location: 'Science City, Ahmedabad, Gujarat',
+    price: '₹7,000',
+    color: '#eab308', // yellow-500
+    bg: 'bg-yellow-50',
+    text: 'text-yellow-700',
+    border: 'border-yellow-200',
+    highlights: [
+      { title: 'AC & Non-AC', desc: 'Options for every budget' },
+      { title: '9 Options', desc: 'Find your perfect fit' },
+      { title: 'Switch Anytime', desc: 'Moving from Non-AC to AC mid-stay? We accommodate.' }
+    ],
+    pricing: [
+      { label: '8 Sharing (Non-AC)', price: '₹7,000', badge: 'Best value' },
+      { label: '6 Sharing (Non-AC)', price: '₹8,000' },
+      { label: '5 Sharing (Non-AC)', price: '₹9,000' },
+      { label: '4 Sharing (Non-AC)', price: '₹10,000' },
+      { label: '8 Sharing (AC)', price: '₹8,000', badge: 'AC comfort' },
+      { label: '6 Sharing (AC)', price: '₹9,000' },
+      { label: '5 Sharing (AC)', price: '₹10,000' },
+      { label: '4 Sharing (AC)', price: '₹11,000' },
+      { label: '3 Sharing (AC)', price: '₹12,000', badge: 'Most premium' },
+    ]
   },
   {
-    icon: Users,
-    title: 'Visitor Tracking',
-    desc: 'Track every prospect from the moment they inquire to their move-in date. See exactly where each lead stands across all branches.',
+    id: 'purple',
+    name: 'Purple House',
+    type: 'Boys PG',
+    tagline: 'Best Boys PG in Naranpura, Ahmedabad',
+    location: '3H63+967, Sandhya, Pallav Flats, Ankur Rd, near Sanidhya Complex, Char Rasta, Naranpura, Ahmedabad, Gujarat 380013',
+    price: '₹7,000',
+    color: '#a855f7', // purple-500
+    bg: 'bg-purple-50',
+    text: 'text-purple-700',
+    border: 'border-purple-200',
+    highlights: [
+      { title: 'IN Naranpura', desc: 'Competitors are 2.8 km away. We are right here.' },
+      { title: '50% Cheaper', desc: 'Than Stanza Living properties nearby.' },
+      { title: '6 Room Types', desc: 'From budget 6-sharing to fully private rooms.' }
+    ],
+    pricing: [
+      { label: '6 Sharing', price: '₹7,000', badge: 'Budget pick' },
+      { label: '5 Sharing', price: '₹7,500' },
+      { label: '4 Sharing', price: '₹8,000' },
+      { label: '3 Sharing', price: '₹8,500' },
+      { label: '2 Sharing', price: '₹9,000' },
+      { label: '1 Sharing (Private)', price: '₹16,000', badge: 'Most private' },
+    ]
   },
   {
-    icon: CalendarCheck,
-    title: 'Visit Scheduling',
-    desc: 'Schedule property tours, assign time slots, and keep your team aligned with a centralized visit calendar for every branch.',
-  },
-  {
-    icon: Building2,
-    title: 'Branch Management',
-    desc: 'Manage multiple PG locations, assign branch-specific teams, track branch performance, and compare occupancy rates side by side.',
-  },
-  {
-    icon: MessageCircle,
-    title: 'AI WhatsApp Follow-up',
-    desc: 'Generate personalized WhatsApp follow-up messages in one click — AI includes name, budget, visit date, and property preferences.',
-  },
-  {
-    icon: BarChart3,
-    title: 'Analytics & Reports',
-    desc: 'Monitor conversion funnels, branch performance, occupancy trends, and monthly inquiry volume with real-time charts and data.',
-  },
-  {
-    icon: Search,
-    title: 'Search & Filter',
-    desc: 'Find any inquiry instantly with powerful multi-field search. Filter by status, branch, budget range, source, date, and more.',
-  },
+    id: 'pink',
+    name: 'Pink House',
+    type: 'Girls PG',
+    tagline: 'Best Girls PG in Gota, Ahmedabad',
+    location: '3rd Floor, Vrindavan Heights, Vandematram Rd, opposite Centre Point, Gota, Ahmedabad, Gujarat 382470',
+    price: '₹8,000',
+    color: '#ec4899', // pink-500
+    bg: 'bg-pink-50',
+    text: 'text-pink-700',
+    border: 'border-pink-200',
+    highlights: [
+      { title: '🔒 Security', desc: '24x7 CCTV surveillance · secure entry · no male visitor access after 9 PM' },
+      { title: '👩 Female Staff', desc: 'Female caretaker on premises · dedicated women-only support' },
+      { title: '✅ Parent Approved', desc: 'Share live room photos with parents · visit anytime before booking' }
+    ],
+    pricing: [
+      { label: '8 Sharing (Bunk bed)', price: '₹8,000', badge: 'Best value' },
+      { label: '7 Sharing (Single bed)', price: '₹12,000' },
+      { label: '4 Sharing (Single bed)', price: '₹14,000' },
+      { label: '3 Sharing (Single bed)', price: '₹16,000', badge: 'Most spacious' },
+    ]
+  }
 ];
 
-const WORKFLOW_STEPS = [
-  { step: '01', label: 'Website Inquiry', desc: 'Lead captured', badge: 'badge-new' },
-  { step: '02', label: 'Contacted', desc: 'Initial outreach made', badge: 'badge-contacted' },
-  { step: '03', label: 'Visit Scheduled', desc: 'Property tour booked', badge: 'badge-visit' },
-  { step: '04', label: 'Admission Confirmed', desc: 'Agreement signed', badge: 'badge-joined' },
-  { step: '05', label: 'Move-In', desc: 'Resident onboarded', badge: 'badge-joined' },
+const AMENITIES = [
+  { icon: Utensils, title: 'Fresh Fruit Daily Breakfast', desc: 'Start your day right with fresh fruits served daily as part of your breakfast' },
+  { icon: Bus, title: 'Transport Facilities', desc: 'Convenient transport facilities available for your daily commute and travel needs' },
+  { icon: PartyPopper, title: 'Happy Saturday Night (Events)', desc: 'Engaging events and fun activities every Saturday night to unwind and relax' },
+  { icon: HeartPulse, title: 'Emergency Medical Support', desc: '24/7 on-call medical support ensuring your health and safety are prioritized' },
+  { icon: CalendarHeart, title: 'Festival Celebrations', desc: 'Joyous festival celebrations and resident activities to build a vibrant community' },
+  { icon: PhoneCall, title: 'One Call. Instant Action.', desc: 'Dedicated support team available on one call for instant action and resolution' }
 ];
 
-const ADMIN_FEATURES = [
-  { icon: ClipboardList, label: 'Manage Inquiries', desc: 'Full CRUD with status tracking' },
-  { icon: Users, label: 'Manage Visitors', desc: 'Walk-in and scheduled visit logs' },
-  { icon: Building2, label: 'Manage Branches', desc: 'Multi-location operations' },
-  { icon: Shield, label: 'Manage Users', desc: 'Role-based access control' },
-  { icon: Filter, label: 'Search & Filter', desc: 'Advanced multi-field queries' },
-  { icon: Activity, label: 'Status Updates', desc: 'Real-time pipeline management' },
-  { icon: Sparkles, label: 'AI Follow-ups', desc: 'One-click WhatsApp messages' },
-  { icon: BarChart3, label: 'Analytics', desc: 'Branch and conversion reports' },
+const FAQ = [
+  { q: 'Is food included in the PG rent?', a: 'Yes, wholesome meals are included in most of our PG plans. Our girls PG includes special daily breakfast with fruits.' },
+  { q: 'Is LIVZO safe for girls?', a: 'Absolutely. Our Pink House in Gota features 24/7 CCTV, secure entry, and is exclusively managed by female staff for complete safety and peace of mind.' },
+  { q: 'Who can stay at LIVZO PG?', a: 'We welcome both students and working professionals looking for a clean, disciplined, and comfortable living environment.' },
+  { q: 'How can I book a room?', a: 'You can select your preferred location above and click Book Now, or simply Call/WhatsApp us at +91 70462 67684 to schedule a visit.' },
+  { q: 'What are the PG locations?', a: 'We have 3 premium branches in Ahmedabad: Yellow House (Science City), Purple House (Naranpura), and Pink House (Gota).' },
+  { q: 'What is the starting price?', a: 'Our transparent pricing varies slightly by branch and room sharing type. Please contact us for the most up-to-date availability and pricing.' }
 ];
+
+const FAQItem = ({ faq }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="border-b border-border last:border-0">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full py-4 flex items-center justify-between text-left focus:outline-none"
+      >
+        <span className="font-semibold text-text-primary pr-4">{faq.q}</span>
+        <ChevronDown size={18} className={`text-text-muted transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="overflow-hidden"
+          >
+            <p className="pb-4 text-text-secondary leading-relaxed font-light">{faq.a}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const LandingPage = () => {
   return (
-    <div className="min-h-screen bg-bg text-text-primary flex flex-col">
+    <div className="min-h-screen bg-bg text-text-primary flex flex-col font-sans">
       {/* Dark Hero Section Wrapper */}
-      <div className="bg-[#014C33] relative z-0 pb-16">
-        {/* Background grid */}
+      <div className="bg-[#014C33] relative z-0 pb-20">
         <div
           className="absolute inset-0 opacity-[0.05] pointer-events-none"
           style={{
@@ -109,599 +155,338 @@ const LandingPage = () => {
           <div className="max-w-6xl mx-auto px-4 md:px-6 flex items-center justify-between h-16">
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center border border-white/20">
-                <LayoutDashboard size={16} className="text-white" />
+                <HeartHandshake size={16} className="text-white" />
               </div>
-              <span className="font-semibold text-white text-base tracking-tight">LIVZO Command Center</span>
+              <span className="font-bold text-white text-lg tracking-tight">LIVZO PG</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <Link to="/login" className="btn bg-white text-[#014C33] hover:bg-white/90 px-5 py-2 text-sm rounded-[10px] shadow-sm font-semibold">
+                Login
+              </Link>
+              <Link to="/contact" className="btn bg-white text-[#014C33] hover:bg-white/90 px-5 py-2 text-sm rounded-[10px] shadow-sm font-semibold">
+                Contact Us
+              </Link>
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            <Link to="/login" className="btn-ghost text-white hover:bg-white/10 text-sm">Log in</Link>
-            <Link to="/dashboard" className="btn bg-white text-[#014C33] hover:bg-white/90 px-4 py-2 text-sm rounded-[10px] shadow-sm font-semibold">
-              Open Dashboard
+        </nav>
+
+        {/* Hero */}
+        <section className="max-w-6xl mx-auto px-4 md:px-6 pt-24 pb-8 relative z-10 text-center">
+          <motion.div {...fadeUp(0)} className="mb-6 flex justify-center">
+            <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-xs text-white font-medium tracking-wide">
+              <ShieldCheck size={14} />
+              Premium PG Accommodation in Ahmedabad
+            </span>
+          </motion.div>
+
+          <motion.h1
+            {...fadeUp(0.08)}
+            className="text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6 text-balance max-w-4xl mx-auto"
+          >
+            Live comfortably. <br />
+            Live safely. <br />
+            <span className="text-white/60">Live like family at LIVZO.</span>
+          </motion.h1>
+
+          <motion.p {...fadeUp(0.14)} className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
+            3 premium branches across Ahmedabad with modern amenities, wholesome meals, and a family-like environment for students and professionals.
+          </motion.p>
+
+          <motion.div {...fadeUp(0.18)} className="flex items-center justify-center gap-4 flex-wrap">
+            <Link to="/contact" className="btn bg-white text-[#014C33] hover:bg-white/90 px-8 py-3.5 text-base rounded-[10px] shadow-lg font-semibold flex items-center gap-2">
+              Book Your PG Today <ArrowRight size={18} />
             </Link>
-          </div>
-        </div>
-      </nav>
+            <a href="https://wa.me/917046267684" target="_blank" rel="noreferrer" className="btn bg-[#25D366] text-white hover:bg-[#20bd5a] px-8 py-3.5 text-base rounded-[10px] shadow-lg font-semibold flex items-center gap-2">
+              <Phone size={18} /> WhatsApp Us
+            </a>
+          </motion.div>
+        </section>
+      </div>
 
-      {/* Hero */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 pt-24 pb-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Copy */}
-          <div>
-            <motion.div {...fadeUp(0)} className="mb-6">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs text-white font-medium tracking-wide">
-                <Shield size={12} />
-                Internal Operations Platform
-              </span>
-            </motion.div>
+      {/* Community Stats */}
+      <section className="max-w-5xl mx-auto px-4 md:px-6 -mt-10 relative z-20 mb-24">
+        <motion.div {...fadeUp(0.2)} className="bg-white rounded-[20px] shadow-modal border border-border p-6 md:p-10 flex flex-wrap justify-between gap-8 text-center">
+          {[
+            { v: '1000+', l: 'Consumers' },
+            { v: '90', l: 'Rooms' },
+            { v: '322', l: 'Beds' },
+            { v: '3', l: 'Branches' }
+          ].map(stat => (
+            <div key={stat.l} className="flex-1 min-w-[120px]">
+              <p className="text-4xl md:text-5xl font-bold text-accent mb-2">{stat.v}</p>
+              <p className="text-sm font-medium text-text-secondary uppercase tracking-wider">{stat.l}</p>
+            </div>
+          ))}
+        </motion.div>
+      </section>
 
-            <motion.h1
-              {...fadeUp(0.08)}
-              className="text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6 text-balance"
-            >
-              Manage Every Inquiry.
-              <br />
-              Schedule Every Visit.
-              <br />
-              <span className="text-white/60">Welcome Every Resident.</span>
-            </motion.h1>
+      {/* Detailed Branches */}
+      <section className="max-w-5xl mx-auto px-4 md:px-6 mb-32">
+        <motion.div {...fadeUp()} className="mb-16 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">
+            Our Premium PG Locations
+          </h2>
+          <p className="text-text-secondary text-base max-w-xl mx-auto font-light">
+            Find the perfect home near your college or workplace. Every room includes: bed, mattress, cupboard, study table, chair, and power backup.
+          </p>
+        </motion.div>
 
-            <motion.p {...fadeUp(0.14)} className="text-lg md:text-xl text-white/80 max-w-xl mb-10 leading-relaxed font-light">
-              A centralized platform for managing inquiries, scheduling property visits, tracking admissions, generating AI-powered follow-ups, and monitoring every lead across all LIVZO branches.
-            </motion.p>
+        <div className="space-y-16 md:space-y-24">
+          {BRANCHES.map((b, idx) => (
+            <motion.div key={b.id} {...fadeUp(0.1)} className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch relative bg-white rounded-3xl border-2 overflow-hidden shadow-xl" style={{ borderColor: b.color }}>
+              {/* Branch Info (Left side) */}
+              <div className="flex-1 p-8 lg:p-12 flex flex-col justify-between" style={{ backgroundColor: b.color + '0A' }}>
+                <div>
+                  <div className="flex items-center gap-3 mb-6">
+                    <span className={`px-4 py-1.5 rounded-full ${b.bg} ${b.text} ${b.border} border-2 text-sm font-bold uppercase tracking-widest shadow-sm`}>
+                      {b.type}
+                    </span>
+                    <span className="text-sm font-bold text-text-primary bg-white border-2 border-black/10 px-4 py-1.5 rounded-full shadow-sm">
+                      Starting {b.price}/mo
+                    </span>
+                  </div>
 
-            <motion.div {...fadeUp(0.18)} className="flex items-center gap-4 flex-wrap">
-              <Link to="/dashboard" className="btn bg-white text-[#014C33] hover:bg-white/90 px-6 py-3 text-base rounded-[10px] shadow-lg font-semibold flex items-center gap-2">
-                Open Dashboard <ArrowRight size={18} />
-              </Link>
-              <Link to="/inquiries/create" className="btn bg-white/10 text-white hover:bg-white/20 border border-white/20 px-6 py-3 text-base rounded-[10px] font-semibold flex items-center gap-2">
-                Create Inquiry <ChevronRight size={18} />
-              </Link>
-            </motion.div>
-          </div>
+                  <h3 className="text-4xl md:text-6xl font-black text-text-primary mb-4 tracking-tighter leading-none" style={{ color: b.color }}>
+                    {b.name}
+                  </h3>
+                  <p className="text-xl md:text-2xl text-text-secondary font-medium mb-8 leading-snug text-balance">
+                    {b.tagline}
+                  </p>
 
-          {/* Right: Mini CRM Dashboard (Light Theme) */}
-          <motion.div {...fadeUp(0.12)}>
-            <div className="bg-card rounded-card shadow-modal overflow-hidden border border-border">
-              <div className="bg-[#f8fafc] border-b border-border px-4 py-3 flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
-                <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
-                <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
-                <span className="text-[11px] font-medium text-text-muted ml-2">LIVZO — Command Center</span>
+                  <div className="flex items-start gap-3 text-text-primary mb-10 bg-white/60 p-4 rounded-xl border border-black/5">
+                    <MapPin size={24} className="mt-1 flex-shrink-0" style={{ color: b.color }} />
+                    <span className="text-base md:text-lg leading-relaxed font-medium">{b.location}</span>
+                  </div>
+
+                  <div className="space-y-6 mb-10">
+                    {b.highlights.map(h => (
+                      <div key={h.title} className="flex gap-4 items-start">
+                        <div className="w-10 h-10 rounded-2xl bg-white shadow-sm flex items-center justify-center flex-shrink-0 border border-black/5" style={{ color: b.color }}>
+                          <Sparkles size={18} />
+                        </div>
+                        <div>
+                          <p className="text-lg font-bold text-text-primary tracking-tight mb-1">{h.title}</p>
+                          <p className="text-base text-text-secondary font-medium leading-relaxed">{h.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex gap-4 mt-auto pt-4">
+                  <Link to="/contact" className="py-4 px-8 rounded-2xl flex items-center justify-center gap-3 font-bold flex-1 text-white shadow-lg text-lg transition-transform hover:scale-[1.02] active:scale-[0.98]" style={{ backgroundColor: b.color }}>
+                    Schedule a Visit <ArrowRight size={20} />
+                  </Link>
+                </div>
               </div>
-              <div className="p-4 bg-white">
-                {/* Mini stat row */}
-                <div className="grid grid-cols-3 gap-3 mb-4">
-                  {[
-                    { label: "Today's Inquiries", val: '14', color: '#016B46' },
-                    { label: 'Pending Follow-ups', val: '8', color: '#f59e0b' },
-                    { label: 'Visits Today', val: '5', color: '#a855f7' },
-                  ].map((s) => (
-                    <div key={s.label} className="bg-white rounded-card p-3 border border-border shadow-sm">
-                      <p className="eyebrow mb-1.5">{s.label}</p>
-                      <p className="text-xl font-bold tracking-tight" style={{ color: s.color }}>{s.val}</p>
+
+              {/* Pricing Grid (Right side) */}
+              <div className="flex-1 bg-white p-8 lg:p-12 border-l border-black/10 flex flex-col justify-center">
+                <div className="flex items-center justify-between mb-8 pb-6 border-b-2 border-black/5">
+                  <div>
+                    <h4 className="text-2xl font-black text-text-primary tracking-tight">Room Pricing</h4>
+                    <p className="text-base font-medium text-text-muted mt-1">{b.pricing.length} options available</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm font-bold text-text-muted uppercase tracking-wider mb-1">Starts from</p>
+                    <p className="text-3xl font-black" style={{ color: b.color }}>{b.price}<span className="text-lg font-medium text-text-muted">/mo</span></p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {b.pricing.map(p => (
+                    <div key={p.label} className="p-5 rounded-2xl border-2 border-black/5 bg-gray-50/50 relative hover:border-black/20 transition-colors">
+                      {p.badge && (
+                        <span className={`absolute -top-3 -right-3 px-3 py-1 text-xs font-bold uppercase tracking-widest rounded-lg border-2 shadow-md ${b.bg} ${b.text} ${b.border}`}>
+                          {p.badge}
+                        </span>
+                      )}
+                      <p className="text-base font-bold text-text-primary mb-2 tracking-tight">{p.label}</p>
+                      <p className="text-2xl font-black tracking-tight" style={{ color: b.color }}>{p.price}<span className="text-sm font-semibold text-text-muted">/mo</span></p>
                     </div>
                   ))}
                 </div>
-                {/* Mini table */}
-                <div className="bg-white rounded-card border border-border overflow-hidden shadow-sm">
-                  <div className="px-3 py-2.5 border-b border-border flex items-center justify-between bg-bg">
-                    <p className="text-xs font-semibold text-text-primary tracking-tight">Recent Inquiries</p>
-                    <div className="flex items-center gap-1.5">
-                      <div className="h-6 rounded-btn bg-white border border-border flex items-center px-2">
-                        <Search size={10} className="text-text-muted" />
-                        <span className="text-[9px] text-text-muted ml-1.5 font-medium">Search</span>
-                      </div>
-                    </div>
-                  </div>
-                  <table className="w-full text-[11px]">
-                    <thead>
-                      <tr className="border-b border-border bg-[rgba(1,107,70,0.02)]">
-                        {['Name', 'Source', 'Branch', 'Status'].map(h => (
-                          <th key={h} className="text-left px-3 py-2 text-text-muted font-semibold uppercase tracking-wider text-[9px]">{h}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {[
-                        ['Aarav Mehta', 'Website', 'Koramangala', 'New'],
-                        ['Priya Sharma', 'WhatsApp', 'Indiranagar', 'Contacted'],
-                        ['Rohan Gupta', 'Walk-in', 'Whitefield', 'Visit Scheduled'],
-                        ['Sneha Patel', 'Phone', 'HSR Layout', 'Joined'],
-                      ].map(([name, source, branch, status]) => (
-                        <tr key={name} className="border-b border-border hover:bg-[rgba(1,107,70,0.02)]">
-                          <td className="px-3 py-2.5 text-text-primary font-medium">{name}</td>
-                          <td className="px-3 py-2.5 text-text-secondary">{source}</td>
-                          <td className="px-3 py-2.5 text-text-secondary">{branch}</td>
-                          <td className="px-3 py-2.5">
-                            <span className={`badge ${
-                              status === 'New' ? 'badge-new' :
-                              status === 'Contacted' ? 'badge-contacted' :
-                              status === 'Visit Scheduled' ? 'badge-visit' :
-                              'badge-joined'
-                            }`}>{status}</span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-      </div>
 
-      {/* Dashboard Preview */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-24">
-        <motion.div {...fadeUp()} className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">
-            Your operations command center
-          </h2>
-          <p className="text-text-secondary text-base max-w-lg mx-auto">
-            A real-time overview of every inquiry, visit, admission, and follow-up across all LIVZO branches.
-          </p>
-        </motion.div>
-
-        <motion.div {...fadeUp(0.1)}>
-          <div className="vf-card overflow-hidden">
-            <div className="bg-bg border-b border-border px-4 py-3 flex items-center gap-2">
-              <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
-              <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
-              <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
-              <span className="text-[11px] font-medium text-text-muted ml-2">LIVZO Command Center — Dashboard</span>
-            </div>
-
-            <div className="p-6 bg-white">
-              {/* Stat cards */}
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-5">
-                {[
-                  { label: "Today's Inquiries", val: '24', color: '#016B46', icon: ClipboardList },
-                  { label: 'Pending Follow-ups', val: '16', color: '#f59e0b', icon: Bell },
-                  { label: 'Visits Scheduled', val: '9', color: '#a855f7', icon: CalendarCheck },
-                  { label: 'Admissions (MTD)', val: '42', color: '#22c55e', icon: UserPlus },
-                  { label: 'Revenue (MTD)', val: '₹7.2L', color: '#016B46', icon: TrendingUp },
-                ].map((s) => (
-                  <div key={s.label} className="bg-white rounded-card p-4 border border-border shadow-sm">
-                    <div className="flex items-center justify-between mb-2">
-                      <p className="eyebrow">{s.label}</p>
-                      <div className="w-6 h-6 rounded-lg bg-[rgba(1,107,70,0.06)] flex items-center justify-center">
-                        <s.icon size={12} style={{ color: s.color }} />
-                      </div>
-                    </div>
-                    <p className="text-xl font-bold tracking-tight" style={{ color: s.color }}>{s.val}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Charts row */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5">
-                {/* Line chart mock */}
-                <div className="md:col-span-2 bg-white rounded-card border border-border p-4 shadow-sm">
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <p className="text-sm font-semibold text-text-primary tracking-tight">Monthly Inquiries</p>
-                      <p className="text-[11px] text-text-secondary">Inquiry volume over the last 6 months</p>
-                    </div>
-                    <span className="text-[10px] text-text-muted bg-[rgba(1,107,70,0.04)] px-2 py-1 rounded-badge border border-border font-medium">6 months</span>
-                  </div>
-                  <div className="h-28 flex items-end gap-1.5">
-                    {[
-                      { month: 'Feb', h: 35 },
-                      { month: 'Mar', h: 52 },
-                      { month: 'Apr', h: 44 },
-                      { month: 'May', h: 68 },
-                      { month: 'Jun', h: 58 },
-                      { month: 'Jul', h: 82 },
-                    ].map((bar) => (
-                      <div key={bar.month} className="flex-1 flex flex-col items-center gap-1.5">
-                        <div
-                          className="w-full rounded-t-[4px] bg-accent/80"
-                          style={{ height: `${bar.h}%` }}
-                        />
-                        <span className="text-[10px] font-medium text-text-muted">{bar.month}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Status distribution */}
-                <div className="bg-white rounded-card border border-border p-4 shadow-sm">
-                  <p className="text-sm font-semibold text-text-primary mb-4 tracking-tight">Status Distribution</p>
-                  <div className="space-y-3">
-                    {[
-                      { status: 'New', count: 48, color: '#016B46', pct: 34 },
-                      { status: 'Contacted', count: 31, color: '#f59e0b', pct: 22 },
-                      { status: 'Visit Scheduled', count: 26, color: '#a855f7', pct: 18 },
-                      { status: 'Joined', count: 24, color: '#22c55e', pct: 17 },
-                      { status: 'Rejected', count: 13, color: '#ef4444', pct: 9 },
-                    ].map((item) => (
-                      <div key={item.status}>
-                        <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-[11px] font-medium text-text-secondary">{item.status}</span>
-                          <span className="text-[11px] font-bold text-text-primary">{item.count}</span>
-                        </div>
-                        <div className="h-1.5 bg-[rgba(1,107,70,0.06)] rounded-full overflow-hidden">
-                          <div
-                            className="h-full rounded-full transition-all duration-500"
-                            style={{ width: `${item.pct}%`, backgroundColor: item.color }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Recent inquiries table */}
-              <div className="bg-white rounded-card border border-border overflow-hidden shadow-sm">
-                <div className="px-4 py-3 border-b border-border flex items-center justify-between bg-bg">
-                  <p className="text-sm font-semibold text-text-primary tracking-tight">Recent Inquiries</p>
-                  <div className="flex items-center gap-2">
-                    <div className="flex items-center gap-1.5 bg-white border border-border rounded-btn px-2.5 py-1.5">
-                      <Search size={12} className="text-text-muted" />
-                      <span className="text-[11px] text-text-muted font-medium">Search inquiries...</span>
-                    </div>
-                    <div className="flex items-center gap-1 bg-white border border-border rounded-btn px-2.5 py-1.5">
-                      <Filter size={12} className="text-text-muted" />
-                      <span className="text-[11px] text-text-muted font-medium">Filters</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-xs">
-                    <thead>
-                      <tr className="border-b border-border bg-[rgba(1,107,70,0.02)]">
-                        {['Name', 'Source', 'Branch', 'Budget', 'Status', 'Follow-up', 'Created'].map(h => (
-                          <th key={h} className="text-left px-4 py-2.5 text-text-muted font-semibold uppercase tracking-wider text-[10px]">{h}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {[
-                        ['Aarav Mehta', 'Website', 'Koramangala', '₹18,000', 'New', 'Pending', '2h ago'],
-                        ['Priya Sharma', 'WhatsApp', 'Indiranagar', '₹12,000', 'Contacted', 'Sent', '5h ago'],
-                        ['Rohan Gupta', 'Walk-in', 'Whitefield', '₹22,000', 'Visit Scheduled', '—', 'Yesterday'],
-                        ['Sneha Patel', 'Phone', 'HSR Layout', '₹9,500', 'Joined', 'Completed', '2d ago'],
-                        ['Vikram Singh', 'Website', 'BTM Layout', '₹15,000', 'Contacted', 'Pending', '3d ago'],
-                      ].map(([name, source, branch, budget, status, followup, created]) => (
-                        <tr key={name} className="border-b border-border hover:bg-[rgba(1,107,70,0.02)]">
-                          <td className="px-4 py-3 text-text-primary font-semibold">{name}</td>
-                          <td className="px-4 py-3 text-text-secondary">
-                            <span className="inline-flex items-center gap-1.5">
-                              {source === 'Website' && <Globe size={12} className="text-text-muted" />}
-                              {source === 'WhatsApp' && <MessageCircle size={12} className="text-text-muted" />}
-                              {source === 'Walk-in' && <Users size={12} className="text-text-muted" />}
-                              {source === 'Phone' && <Phone size={12} className="text-text-muted" />}
-                              {source}
-                            </span>
-                          </td>
-                          <td className="px-4 py-3 text-text-secondary">{branch}</td>
-                          <td className="px-4 py-3 text-text-secondary font-medium">{budget}</td>
-                          <td className="px-4 py-3">
-                            <span className={`badge ${
-                              status === 'New' ? 'badge-new' :
-                              status === 'Contacted' ? 'badge-contacted' :
-                              status === 'Visit Scheduled' ? 'badge-visit' :
-                              'badge-joined'
-                            }`}>{status}</span>
-                          </td>
-                          <td className="px-4 py-3 text-text-muted font-medium">{followup}</td>
-                          <td className="px-4 py-3 text-text-muted">{created}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                {/* Activity feed */}
-                <div className="px-4 py-4 border-t border-border bg-white">
-                  <p className="eyebrow mb-3">Activity Feed</p>
-                  <div className="space-y-2.5">
-                    {[
-                      { text: 'Priya Sharma moved to Contacted', time: '5m ago', color: '#f59e0b' },
-                      { text: 'Visit scheduled for Rohan Gupta — Whitefield', time: '22m ago', color: '#a855f7' },
-                      { text: 'New inquiry from website — Aarav Mehta', time: '2h ago', color: '#016B46' },
-                    ].map((activity) => (
-                      <div key={activity.text} className="flex items-center gap-2.5">
-                        <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: activity.color }} />
-                        <span className="text-[11px] font-medium text-text-secondary flex-1">{activity.text}</span>
-                        <span className="text-[10px] text-text-muted font-medium">{activity.time}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Features */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-32">
-        <motion.div {...fadeUp()} className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">
-            Everything your admissions team needs
-          </h2>
-          <p className="text-text-secondary text-base max-w-xl mx-auto font-light">
-            From capturing the first inquiry to welcoming a new resident, LIVZO Command Center gives your team complete control.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {FEATURES.map((f, i) => (
-            <motion.div
-              key={f.title}
-              {...fadeUp(i * 0.05)}
-              className="vf-card-hover bg-white p-6"
-            >
-              <div className="w-10 h-10 rounded-lg bg-[rgba(1,107,70,0.08)] flex items-center justify-center mb-5">
-                <f.icon size={18} className="text-accent" />
-              </div>
-              <h3 className="text-base font-semibold text-text-primary mb-2.5 tracking-tight">{f.title}</h3>
-              <p className="text-sm text-text-secondary leading-relaxed">{f.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Workflow */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-32">
-        <motion.div {...fadeUp()} className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">
-            From inquiry to move-in
-          </h2>
-          <p className="text-text-secondary text-base font-light">Every lead follows a structured pipeline — no one falls through the cracks</p>
-        </motion.div>
-
-        {/* Desktop: Horizontal */}
-        <div className="hidden md:flex items-start justify-center gap-2">
-          {WORKFLOW_STEPS.map((step, i) => (
-            <motion.div key={step.step} {...fadeUp(i * 0.08)} className="flex items-start">
-              <div className="flex flex-col items-center text-center w-40">
-                <div className="w-12 h-12 rounded-full bg-white shadow-sm border border-border flex items-center justify-center mb-4 relative z-10">
-                  <span className="text-sm font-bold text-accent">{step.step}</span>
-                </div>
-                <p className="text-base font-semibold text-text-primary mb-1 tracking-tight">{step.label}</p>
-                <p className="text-sm text-text-secondary leading-relaxed">{step.desc}</p>
-              </div>
-              {i < WORKFLOW_STEPS.length - 1 && (
-                <div className="flex items-center mx-1 mt-6">
-                  <div className="h-px w-10 bg-border" />
-                  <ChevronRight size={14} className="text-text-muted" />
-                </div>
-              )}
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Mobile: Vertical */}
-        <div className="md:hidden space-y-0 pl-4">
-          {WORKFLOW_STEPS.map((step, i) => (
-            <motion.div key={step.step} {...fadeUp(i * 0.06)}>
-              <div className="flex items-start gap-5">
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 rounded-full bg-white shadow-sm border border-border flex items-center justify-center relative z-10">
-                    <span className="text-xs font-bold text-accent">{step.step}</span>
-                  </div>
-                  {i < WORKFLOW_STEPS.length - 1 && (
-                    <div className="w-px h-12 bg-border -mt-1" />
-                  )}
-                </div>
-                <div className="pt-2 pb-6">
-                  <p className="text-base font-semibold text-text-primary mb-1 tracking-tight">{step.label}</p>
-                  <p className="text-sm text-text-secondary">{step.desc}</p>
-                </div>
+                <p className="text-xs font-medium text-text-muted mt-8 leading-relaxed bg-gray-50 p-4 rounded-xl border border-black/5">
+                  *Denotes starting price inclusive of taxes. Final prices may vary based on room occupancy, customized services, and additional attributes.
+                </p>
               </div>
             </motion.div>
           ))}
         </div>
-
-        {/* Outcome badges */}
-        <motion.div {...fadeUp(0.3)} className="flex items-center justify-center gap-3 mt-8">
-          <span className="badge-joined">✓ Move-In Complete</span>
-          <span className="text-xs text-text-muted">or</span>
-          <span className="badge-rejected">✗ Rejected</span>
-        </motion.div>
       </section>
 
-      {/* AI WhatsApp Preview */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          <motion.div {...fadeUp()}>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-xs text-green-600 font-bold mb-6 tracking-wide uppercase">
-              <Sparkles size={12} />
-              AI Powered
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-5 leading-tight tracking-tight">
-              Generate WhatsApp follow-ups in one click
+      {/* Amenities */}
+      <section className="bg-white border-y border-border py-24 mb-32">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <motion.div {...fadeUp()} className="mb-16 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">
+              World class amenities
             </h2>
-            <p className="text-text-secondary text-base leading-relaxed mb-8 font-light">
-              LIVZO's AI engine crafts personalized, professional WhatsApp messages that mention the prospect's name,
-              preferred branch, visit date, and budget — ready to copy and send in seconds.
+            <p className="text-text-secondary text-base max-w-xl mx-auto font-light">
+              Everything you need for a comfortable and productive life as a student or professional.
             </p>
-            <div className="space-y-2">
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+            {AMENITIES.map((a, i) => (
+              <motion.div key={a.title} {...fadeUp(i * 0.05)} className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-[12px] bg-[rgba(1,107,70,0.08)] flex items-center justify-center flex-shrink-0">
+                  <a.icon size={22} className="text-accent" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-text-primary mb-2 tracking-tight">{a.title}</h3>
+                  <p className="text-sm text-text-secondary leading-relaxed font-light">{a.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us & Workflow */}
+      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <motion.div {...fadeUp()}>
+            <h2 className="text-3xl font-bold text-text-primary mb-6 tracking-tight">
+              Why Choose LIVZO PG?
+            </h2>
+            <div className="space-y-4">
               {[
-                'Personalized for each inquiry — name, branch, budget',
-                'Under 80 words — optimized for WhatsApp',
-                'Copy and send instantly from the inquiry detail page',
-                'Template fallback when AI is unavailable',
-              ].map(point => (
-                <div key={point} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full bg-green-500/10 flex items-center justify-center flex-shrink-0">
-                    <Check size={11} className="text-green-600" />
+                'Family-like living environment — feel at home from day one',
+                'Clean, disciplined & hygienic lifestyle',
+                'Transparent pricing — no hidden charges',
+                'Professional full-time management team',
+                '3 convenient locations across Ahmedabad',
+                'Trusted by 1000+ consumers & working professionals'
+              ].map(item => (
+                <div key={item} className="flex items-start gap-3">
+                  <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <CheckCircle2 size={14} className="text-accent" />
                   </div>
-                  <span className="text-sm font-medium text-text-secondary">{point}</span>
+                  <span className="text-base text-text-secondary leading-relaxed">{item}</span>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          <motion.div {...fadeUp(0.1)}>
-            <div className="vf-card bg-white p-6">
-              {/* Customer card */}
-              <div className="bg-bg rounded-btn p-4 border border-border mb-5">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
-                    <span className="text-xs font-semibold text-accent">AM</span>
+          <motion.div {...fadeUp(0.1)} className="bg-white rounded-card p-8 border border-border shadow-sm">
+            <h3 className="text-xl font-bold text-text-primary mb-8 tracking-tight">
+              Simple & Hassle-Free Booking Process
+            </h3>
+            <div className="space-y-8 relative before:absolute before:inset-0 before:ml-[19px] before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-border before:to-transparent">
+              {[
+                { step: '1', title: 'Choose Location', desc: 'Select from Science City, Naranpura, or Gota' },
+                { step: '2', title: 'Call / WhatsApp', desc: 'Contact us to check availability — +91 70462 67684' },
+                { step: '3', title: 'Visit the PG', desc: 'Schedule a visit to see the rooms in person' },
+                { step: '4', title: 'Move In Comfortably', desc: 'Complete booking & move into your new home' }
+              ].map((s, i) => (
+                <div key={s.step} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full border border-border bg-white text-text-primary font-bold shadow-sm shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                    {s.step}
                   </div>
-                  <div>
-                    <p className="text-base font-semibold text-text-primary tracking-tight">Aarav Mehta</p>
-                    <p className="text-xs text-text-secondary">Koramangala • ₹18,000/mo • Visit: 25 Jul</p>
+                  <div className="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-btn border border-border bg-bg shadow-sm">
+                    <h4 className="font-semibold text-text-primary mb-1 text-sm">{s.title}</h4>
+                    <p className="text-xs text-text-secondary font-light">{s.desc}</p>
                   </div>
-                  <span className="badge-new ml-auto font-bold px-2 py-1">New</span>
                 </div>
-              </div>
-
-              <div className="flex items-center justify-between mb-3">
-                <p className="text-sm font-semibold text-text-primary tracking-tight">Generated Message</p>
-                <span className="text-[10px] font-bold uppercase tracking-wider bg-green-500/10 text-green-600 px-2.5 py-1 rounded-full border border-green-500/20 flex items-center gap-1.5">
-                  <Sparkles size={10} />
-                  AI
-                </span>
-              </div>
-              <div className="bg-bg rounded-btn p-4 border border-border mb-4 text-sm text-text-secondary leading-relaxed font-light">
-                Hi Aarav! 👋 Thank you for your inquiry at <strong className="font-semibold text-text-primary">LIVZO Koramangala</strong>. We're excited to show you our{' '}
-                <strong className="font-semibold text-text-primary">premium PG options</strong> within your budget of <strong className="font-semibold text-text-primary">₹18,000/month</strong>.
-                Your visit is scheduled for <strong className="font-semibold text-text-primary">25 Jul 2024</strong>. We look forward to welcoming you! 😊
-              </div>
-              <div className="flex gap-3">
-                <button className="btn-secondary btn-sm flex-1 flex items-center justify-center gap-2 py-2">
-                  <Copy size={14} />
-                  Copy
-                </button>
-                <button className="btn-accent btn-sm flex-1 flex items-center justify-center gap-2 py-2">
-                  <RefreshCw size={14} />
-                  Generate Again
-                </button>
-              </div>
+              ))}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Analytics Preview */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-32">
-        <motion.div {...fadeUp()} className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">
-            Data-driven decisions for every branch
+      {/* FAQ */}
+      <section className="max-w-3xl mx-auto px-4 md:px-6 mb-32">
+        <motion.div {...fadeUp()} className="mb-10 text-center">
+          <h2 className="text-3xl font-bold text-text-primary tracking-tight">
+            Frequently Asked Questions
           </h2>
-          <p className="text-text-secondary text-base max-w-lg mx-auto font-light">
-            Monitor conversion funnels, occupancy rates, and branch performance in real time.
-          </p>
         </motion.div>
-
-        <motion.div {...fadeUp(0.1)}>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {[
-              { label: 'Monthly Inquiries', value: '142', sub: '+18% vs last month', icon: ClipboardList, color: '#016B46' },
-              { label: 'Branch Performance', value: '6 branches', sub: 'Koramangala leads', icon: Building2, color: '#a855f7' },
-              { label: 'Occupancy Rate', value: '87%', sub: 'Across all properties', icon: Home, color: '#22c55e' },
-              { label: 'Conversion Rate', value: '32%', sub: 'Inquiry → Move-in', icon: TrendingUp, color: '#f59e0b' },
-              { label: 'Upcoming Visits', value: '14', sub: 'This week', icon: CalendarCheck, color: '#a855f7' },
-              { label: 'Follow-ups Pending', value: '23', sub: 'Across all branches', icon: Bell, color: '#ef4444' },
-            ].map((stat, i) => (
-              <motion.div key={stat.label} {...fadeUp(i * 0.05)} className="vf-card-hover bg-white p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-[rgba(1,107,70,0.06)] flex items-center justify-center">
-                    <stat.icon size={18} style={{ color: stat.color }} />
-                  </div>
-                </div>
-                <p className="text-2xl font-bold text-text-primary mb-1 tracking-tight">{stat.value}</p>
-                <p className="text-sm font-semibold text-text-secondary mb-1">{stat.label}</p>
-                <p className="text-[11px] text-text-muted">{stat.sub}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Admin Features */}
-      <section className="max-w-6xl mx-auto px-4 md:px-6 mb-32">
-        <motion.div {...fadeUp()} className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">
-            Complete admin control
-          </h2>
-          <p className="text-text-secondary text-base max-w-lg mx-auto font-light">
-            Every tool your operations team needs — from inquiry management to AI-powered follow-ups.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {ADMIN_FEATURES.map((feature, i) => (
-            <motion.div
-              key={feature.label}
-              {...fadeUp(i * 0.04)}
-              className="vf-card-hover bg-white p-5 flex flex-col items-start"
-            >
-              <div className="w-10 h-10 rounded-lg bg-[rgba(1,107,70,0.08)] flex items-center justify-center mb-4">
-                <feature.icon size={18} className="text-accent" />
-              </div>
-              <p className="text-base font-semibold text-text-primary mb-1 tracking-tight">{feature.label}</p>
-              <p className="text-xs text-text-secondary leading-relaxed">{feature.desc}</p>
-            </motion.div>
+        <motion.div {...fadeUp(0.1)} className="bg-white rounded-card p-2 border border-border shadow-sm">
+          {FAQ.map((faq) => (
+            <div key={faq.q} className="px-4">
+              <FAQItem faq={faq} />
+            </div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* CTA */}
       <section className="max-w-6xl mx-auto px-4 md:px-6 mb-32">
-        <motion.div {...fadeUp()} className="vf-card bg-white p-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-5 tracking-tight">
-            From first inquiry to move-in — everything in one place
+        <motion.div {...fadeUp()} className="vf-card bg-white p-10 md:p-16 text-center shadow-lg border border-border">
+          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-5 tracking-tight text-balance">
+            Looking for the Best PG in Ahmedabad?
           </h2>
-          <p className="text-text-secondary text-base mb-8 max-w-2xl mx-auto font-light">
-            LIVZO Command Center is built for your admissions and operations team. Start managing your pipeline today.
+          <p className="text-text-secondary text-base mb-10 max-w-xl mx-auto font-light">
+            Don't compromise on your comfort and safety. Contact us today to schedule a visit and experience the LIVZO difference.
           </p>
-          <div className="flex items-center justify-center gap-4">
-            <Link to="/dashboard" className="btn-primary btn-lg flex items-center gap-2 px-8 py-3.5 shadow-sm font-semibold">
-              Open Dashboard <ArrowRight size={18} />
-            </Link>
-            <Link to="/inquiries/create" className="btn-secondary btn-lg px-8 py-3.5 font-semibold">
-              Create Inquiry
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="tel:+917046267684" className="w-full sm:w-auto btn-primary btn-lg flex items-center justify-center gap-2 px-8 py-3.5 shadow-sm font-semibold">
+              <Phone size={18} /> Call Now
+            </a>
+            <Link to="/contact" className="w-full sm:w-auto btn-secondary btn-lg flex items-center justify-center gap-2 px-8 py-3.5 font-semibold">
+              Schedule a Visit Today
             </Link>
           </div>
         </motion.div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border py-12">
+      <footer className="bg-white border-t border-border py-12">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <div className="flex items-start justify-between flex-wrap gap-8">
-            <div>
-              <div className="flex items-center gap-2.5 mb-3">
+          <div className="flex flex-col md:flex-row items-start justify-between gap-8">
+            <div className="max-w-xs">
+              <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-                  <LayoutDashboard size={16} className="text-white" />
+                  <HeartHandshake size={16} className="text-white" />
                 </div>
-                <div>
-                  <p className="text-base font-bold text-text-primary tracking-tight">LIVZO Command Center</p>
-                </div>
+                <span className="text-lg font-bold text-text-primary tracking-tight">LIVZO</span>
               </div>
-              <p className="text-xs text-text-muted">Internal Visitor & Inquiry Management Platform</p>
+              <p className="text-sm text-text-secondary leading-relaxed font-light mb-4">
+                PG for students & working professionals in Gota | Naranpura | Science City
+              </p>
+              <div className="flex flex-col gap-2">
+                <a href="mailto:livzoindia@gmail.com" className="text-sm text-text-muted hover:text-accent transition-colors flex items-center gap-2">
+                  <Mail size={14} /> livzoindia@gmail.com
+                </a>
+                <a href="tel:+917046267684" className="text-sm text-text-muted hover:text-accent transition-colors flex items-center gap-2">
+                  <Phone size={14} /> +91 70462 67684
+                </a>
+              </div>
             </div>
 
-            <div className="flex gap-8">
+            <div className="flex gap-12">
               <div>
-                <p className="text-xs font-medium text-text-secondary mb-2">Platform</p>
-                <div className="space-y-1.5">
-                  <Link to="/dashboard" className="block text-xs text-text-muted hover:text-text-primary transition-colors">Dashboard</Link>
-                  <Link to="/analytics" className="block text-xs text-text-muted hover:text-text-primary transition-colors">Analytics</Link>
-                  <Link to="/settings" className="block text-xs text-text-muted hover:text-text-primary transition-colors">Settings</Link>
+                <p className="text-sm font-bold text-text-primary mb-4 tracking-tight">Locations</p>
+                <div className="space-y-2.5">
+                  <span className="block text-sm text-text-muted font-light">PG in Science City (Boys)</span>
+                  <span className="block text-sm text-text-muted font-light">PG in Naranpura (Boys)</span>
+                  <span className="block text-sm text-text-muted font-light">PG in Gota (Girls)</span>
                 </div>
               </div>
               <div>
-                <p className="text-xs font-medium text-text-secondary mb-2">Support</p>
-                <div className="space-y-1.5">
-                  <span className="block text-xs text-text-muted">help@livzo.com</span>
-                  <span className="block text-xs text-text-muted">Documentation</span>
+                <p className="text-sm font-bold text-text-primary mb-4 tracking-tight">Legal</p>
+                <div className="space-y-2.5">
+                  <Link to="#" className="block text-sm text-text-muted hover:text-accent transition-colors font-light">Privacy Policy</Link>
+                  <Link to="#" className="block text-sm text-text-muted hover:text-accent transition-colors font-light">Terms of Service</Link>
+                  <Link to="#" className="block text-sm text-text-muted hover:text-accent transition-colors font-light">Refund Policy</Link>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="vf-divider mt-6 mb-4" />
-          <p className="text-xs text-text-muted">
-            © {new Date().getFullYear()} LIVZO Command Center. Internal use only.
-          </p>
+          <div className="vf-divider mt-10 mb-6" />
+
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-xs text-text-muted font-light">
+              © {new Date().getFullYear()} LIVZO. All rights reserved.
+            </p>
+            <div className="flex items-center gap-6">
+              <span className="text-[10px] text-text-muted opacity-50 max-w-md hidden md:block">SEO Keywords: PG in Gota, PG in Naranpura, PG in Science City, Boys PG Ahmedabad, Girls PG Ahmedabad</span>
+              <Link to="/login" className="text-xs text-text-muted hover:text-accent font-medium transition-colors">Admin Login</Link>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
