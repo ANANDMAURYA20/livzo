@@ -5,6 +5,7 @@ import {
   ArrowRight, CheckCircle2, ChevronDown, Utensils, Cctv, Phone, Mail, MapPin, Bus, CalendarHeart, HeartPulse, PartyPopper,
   PhoneCall, HeartHandshake, ShieldCheck, Info, Check, Shield, Lock, Users, Sparkles
 } from 'lucide-react';
+import heroBg from '../assets/yellow-house-exterior.webp';
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 16 },
@@ -140,10 +141,10 @@ const FAQItem = ({ faq }) => {
 const LandingPage = () => {
   return (
     <div className="min-h-screen bg-bg text-text-primary flex flex-col font-sans">
-      {/* Dark Hero Section Wrapper */}
-      <div className="bg-[#014C33] relative z-0 pb-20">
+      <div className="bg-[#014C33] relative z-0 pb-20 overflow-hidden">
+        {/* Subtle grid pattern overlay */}
         <div
-          className="absolute inset-0 opacity-[0.05] pointer-events-none"
+          className="absolute inset-0 opacity-[0.05] pointer-events-none z-[-1]"
           style={{
             backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
             backgroundSize: '48px 48px',
@@ -152,54 +153,82 @@ const LandingPage = () => {
 
         {/* Navbar */}
         <nav className="sticky top-0 z-40 bg-[#014C33]/90 backdrop-blur-md border-b border-white/[0.1]">
-          <div className="max-w-6xl mx-auto px-4 md:px-6 flex items-center justify-between h-16">
+          <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between h-16">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center border border-white/20">
-                <HeartHandshake size={16} className="text-white" />
+              <div className="w-8 h-8 bg-[#25D366] rounded-lg flex items-center justify-center shadow-[0_0_15px_rgb(37,211,102,0.3)]">
+                <HeartHandshake size={16} className="text-[#014C33]" />
               </div>
-              <span className="font-bold text-white text-lg tracking-tight">LIVZO PG</span>
+              <span className="font-black text-white text-xl tracking-tight">LIVZO</span>
             </div>
             <div className="flex items-center gap-4">
-              <Link to="/login" className="btn bg-white text-[#014C33] hover:bg-white/90 px-5 py-2 text-sm rounded-[10px] shadow-sm font-semibold">
-                Login
+              <Link to="/login" className="btn bg-white/10 text-white hover:bg-white/20 px-5 py-2 text-sm rounded-xl font-bold backdrop-blur-sm transition-colors border border-white/10">
+                Admin Login
               </Link>
-              <Link to="/contact" className="btn bg-white text-[#014C33] hover:bg-white/90 px-5 py-2 text-sm rounded-[10px] shadow-sm font-semibold">
+              <Link to="/contact" className="btn bg-[#25D366] text-[#014C33] hover:bg-[#20bd5a] px-5 py-2 text-sm rounded-xl shadow-[0_4px_14px_0_rgb(37,211,102,0.39)] hover:shadow-[0_6px_20px_rgba(37,211,102,0.23)] font-black transition-all">
                 Contact Us
               </Link>
             </div>
           </div>
         </nav>
 
-        {/* Hero */}
-        <section className="max-w-6xl mx-auto px-4 md:px-6 pt-24 pb-8 relative z-10 text-center">
-          <motion.div {...fadeUp(0)} className="mb-6 flex justify-center">
-            <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-xs text-white font-medium tracking-wide">
-              <ShieldCheck size={14} />
-              Premium PG Accommodation in Ahmedabad
-            </span>
-          </motion.div>
+        {/* Hero - Split Layout */}
+        <section className="max-w-7xl mx-auto px-4 md:px-6 pt-16 md:pt-24 pb-8 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            
+            {/* Left Content */}
+            <div className="flex-1 text-center lg:text-left pt-8">
+              <motion.div {...fadeUp(0)} className="mb-6 flex justify-center lg:justify-start">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-xs text-white font-bold tracking-widest uppercase">
+                  <ShieldCheck size={14} className="text-[#25D366]" />
+                  Premium Accommodation
+                </span>
+              </motion.div>
 
-          <motion.h1
-            {...fadeUp(0.08)}
-            className="text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6 text-balance max-w-4xl mx-auto"
-          >
-            Live comfortably. <br />
-            Live safely. <br />
-            <span className="text-white/60">Live like family at LIVZO.</span>
-          </motion.h1>
+              <motion.h1
+                {...fadeUp(0.08)}
+                className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tighter mb-6 text-balance"
+              >
+                Live comfortably.<br />
+                Live safely.<br />
+                <span className="text-[#25D366]">Live like family.</span>
+              </motion.h1>
 
-          <motion.p {...fadeUp(0.14)} className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
-            3 premium branches across Ahmedabad with modern amenities, wholesome meals, and a family-like environment for students and professionals.
-          </motion.p>
+              <motion.p {...fadeUp(0.14)} className="text-lg md:text-xl text-white/80 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed font-medium text-balance">
+                3 premium branches across Ahmedabad with modern amenities, wholesome meals, and a family-like environment for students and professionals.
+              </motion.p>
 
-          <motion.div {...fadeUp(0.18)} className="flex items-center justify-center gap-4 flex-wrap">
-            <Link to="/contact" className="btn bg-white text-[#014C33] hover:bg-white/90 px-8 py-3.5 text-base rounded-[10px] shadow-lg font-semibold flex items-center gap-2">
-              Book Your PG Today <ArrowRight size={18} />
-            </Link>
-            <a href="https://wa.me/917046267684" target="_blank" rel="noreferrer" className="btn bg-[#25D366] text-white hover:bg-[#20bd5a] px-8 py-3.5 text-base rounded-[10px] shadow-lg font-semibold flex items-center gap-2">
-              <Phone size={18} /> WhatsApp Us
-            </a>
-          </motion.div>
+              <motion.div {...fadeUp(0.18)} className="flex items-center justify-center lg:justify-start gap-4 flex-wrap">
+                <Link to="/contact" className="btn bg-[#25D366] text-[#014C33] hover:bg-[#20bd5a] px-8 py-4 text-lg rounded-2xl shadow-[0_8px_30px_rgb(37,211,102,0.3)] hover:-translate-y-1 font-black flex items-center gap-3 transition-all">
+                  Book Your PG <ArrowRight size={20} />
+                </Link>
+                <a href="https://wa.me/917046267684" target="_blank" rel="noreferrer" className="btn bg-white/10 text-white hover:bg-white/20 px-8 py-4 text-lg rounded-2xl border border-white/20 font-bold flex items-center gap-3 backdrop-blur-sm transition-all hover:-translate-y-1">
+                  <Phone size={20} className="text-[#25D366]" /> WhatsApp
+                </a>
+              </motion.div>
+            </div>
+
+            {/* Right Image */}
+            <motion.div {...fadeUp(0.2)} className="flex-1 w-full max-w-2xl lg:max-w-none relative mt-10 lg:mt-0">
+              {/* Decorative Glow */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#25D366]/20 rounded-full blur-[100px] z-[-1]" />
+              
+              <div className="relative rounded-[40px] overflow-hidden border-4 border-white/10 shadow-2xl transform lg:rotate-2 hover:rotate-0 transition-transform duration-500">
+                <img 
+                  src={heroBg} 
+                  alt="Livzo Yellow House Premium PG" 
+                  className="w-full h-auto object-cover max-h-[600px]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#014C33]/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-8 left-8 right-8 flex items-center gap-4">
+                  <div className="bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl p-4 flex-1">
+                    <p className="text-white font-black text-xl leading-tight">Yellow House</p>
+                    <p className="text-white/80 font-medium text-sm">Science City, Ahmedabad</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+          </div>
         </section>
       </div>
 
