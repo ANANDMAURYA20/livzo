@@ -30,79 +30,98 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-bg flex flex-col">
-      {/* Navbar Minimal */}
-      <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-border">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 flex items-center h-16">
-          <Link to="/" className="text-sm font-semibold text-text-primary flex items-center gap-2 hover:text-accent transition-colors">
+    <div className="min-h-screen flex flex-col lg:flex-row font-sans">
+      
+      {/* Left Side: Dark Immersive Brand Panel */}
+      <div className="lg:w-5/12 bg-[#014C33] text-white flex flex-col relative overflow-hidden">
+        {/* Background Pattern */}
+        <div 
+          className="absolute inset-0 opacity-[0.05] pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)`,
+            backgroundSize: '48px 48px',
+          }}
+        />
+
+        <div className="p-8 lg:p-12 z-10 flex-1 flex flex-col">
+          <Link to="/" className="inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors mb-16 text-sm font-bold tracking-widest uppercase">
             <ArrowLeft size={16} />
             Back to Home
           </Link>
-        </div>
-      </nav>
 
-      <div className="flex-1 max-w-6xl w-full mx-auto px-4 md:px-6 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
-
-          {/* Left: Contact Info */}
-          <motion.div {...fadeUp(0)} className="lg:col-span-2">
-            <span className="eyebrow mb-2">Get in touch</span>
-            <h1 className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight mb-4">
-              Schedule a Visit or Ask a Question
+          <motion.div {...fadeUp(0)} className="mt-auto mb-16">
+            <h1 className="text-5xl lg:text-7xl font-black tracking-tighter mb-6 leading-[1.1]">
+              Let's find<br />your perfect<br /><span className="text-[#25D366]">space.</span>
             </h1>
-            <p className="text-text-secondary text-base font-light mb-10 leading-relaxed">
-              We're here to help you find the perfect PG accommodation in Ahmedabad. Fill out the form, and our admissions team will get back to you instantly.
+            <p className="text-xl text-white/80 font-medium leading-relaxed max-w-md">
+              Whether you want to schedule a visit or just ask a question, our team is ready to help you settle in.
             </p>
+          </motion.div>
 
-            <div className="space-y-8">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                  <Phone size={18} className="text-accent" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-text-primary mb-1 tracking-tight">Call or WhatsApp</p>
-                  <p className="text-sm text-text-secondary">+91 70462 67684</p>
-                  <p className="text-xs text-text-muted mt-0.5">Available 9 AM to 8 PM</p>
-                </div>
+          <motion.div {...fadeUp(0.1)} className="space-y-8 mt-auto pb-8">
+            <div className="flex items-start gap-5 group">
+              <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10 group-hover:bg-white/20 transition-colors">
+                <Phone size={24} className="text-[#25D366]" />
               </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                  <Mail size={18} className="text-accent" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-text-primary mb-1 tracking-tight">Email Us</p>
-                  <p className="text-sm text-text-secondary">livzoindia@gmail.com</p>
-                  <p className="text-xs text-text-muted mt-0.5">We usually reply within 2 hours</p>
-                </div>
+              <div className="pt-1">
+                <p className="text-sm font-bold text-white/60 uppercase tracking-widest mb-1">Call or WhatsApp</p>
+                <p className="text-2xl font-bold tracking-tight">+91 70462 67684</p>
               </div>
+            </div>
 
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-                  <MapPin size={18} className="text-accent" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-text-primary mb-1 tracking-tight">Our Locations</p>
-                  <ul className="text-sm text-text-secondary space-y-1">
-                    <li>• Science City, Ahmedabad (Boys)</li>
-                    <li>• Naranpura, Ahmedabad (Boys)</li>
-                    <li>• Gota, Ahmedabad (Girls)</li>
-                  </ul>
-                </div>
+            <div className="flex items-start gap-5 group">
+              <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center flex-shrink-0 border border-white/10 group-hover:bg-white/20 transition-colors">
+                <Mail size={24} className="text-white" />
+              </div>
+              <div className="pt-1">
+                <p className="text-sm font-bold text-white/60 uppercase tracking-widest mb-1">Email Us</p>
+                <p className="text-2xl font-bold tracking-tight">livzoindia@gmail.com</p>
               </div>
             </div>
           </motion.div>
-
-          {/* Right: Form */}
-          <motion.div {...fadeUp(0.1)} className="lg:col-span-3">
-            <div className="vf-card bg-white p-6 md:p-8 border-2    rounded-[20px]">
-              <h2 className="text-xl font-semibold text-text-primary mb-6 tracking-tight">Inquiry Details</h2>
-              <InquiryForm onSubmit={handleSubmit} loading={loading} />
-            </div>
-          </motion.div>
-
         </div>
       </div>
+
+      {/* Right Side: Form Area */}
+      <div className="lg:w-7/12 bg-[#F4F1EA] flex flex-col justify-center p-8 lg:p-16 relative">
+        <motion.div {...fadeUp(0.2)} className="max-w-2xl w-full mx-auto">
+          
+          <div className="mb-12">
+            <span className="inline-block py-1.5 px-4 rounded-full bg-black/5 border border-black/10 text-xs font-bold uppercase tracking-widest mb-4">
+              Direct Inquiry
+            </span>
+            <h2 className="text-4xl font-black text-gray-900 tracking-tight mb-2">
+              Send a Message
+            </h2>
+            <p className="text-lg text-gray-600 font-medium">
+              Fill out the details below and we'll reply within 2 hours.
+            </p>
+          </div>
+
+          <div className="bg-white p-8 lg:p-10 rounded-[32px] shadow-2xl border-2 border-black/5 relative overflow-hidden">
+            {/* Subtle design accent inside form card */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#014C33]/5 rounded-bl-[100px] -z-10" />
+            
+            <InquiryForm onSubmit={handleSubmit} loading={loading} />
+          </div>
+
+          <div className="mt-12 flex items-start gap-4 p-6 bg-white/50 rounded-2xl border border-black/5">
+            <div className="w-12 h-12 rounded-full bg-black/5 flex items-center justify-center flex-shrink-0">
+              <MapPin size={20} className="text-gray-900" />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-gray-900 mb-2 uppercase tracking-widest">Our Locations</p>
+              <div className="flex flex-wrap gap-2">
+                <span className="px-3 py-1 bg-white border border-black/10 rounded-full text-sm font-medium">📍 Science City (Boys)</span>
+                <span className="px-3 py-1 bg-white border border-black/10 rounded-full text-sm font-medium">📍 Naranpura (Boys)</span>
+                <span className="px-3 py-1 bg-white border border-black/10 rounded-full text-sm font-medium">📍 Gota (Girls)</span>
+              </div>
+            </div>
+          </div>
+
+        </motion.div>
+      </div>
+
     </div>
   );
 };

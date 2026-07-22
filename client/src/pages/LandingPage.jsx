@@ -344,148 +344,188 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Why Choose Us & Workflow */}
+      {/* Why Choose Us & Workflow - Premium Redesign */}
       <section className="max-w-6xl mx-auto px-4 md:px-6 mb-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <motion.div {...fadeUp()}>
-            <h2 className="text-3xl font-bold text-text-primary mb-6 tracking-tight">
-              Why Choose LIVZO PG?
-            </h2>
-            <div className="space-y-4">
-              {[
-                'Family-like living environment — feel at home from day one',
-                'Clean, disciplined & hygienic lifestyle',
-                'Transparent pricing — no hidden charges',
-                'Professional full-time management team',
-                '3 convenient locations across Ahmedabad',
-                'Trusted by 1000+ consumers & working professionals'
-              ].map(item => (
-                <div key={item} className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <CheckCircle2 size={14} className="text-accent" />
+        <div className="flex flex-col lg:flex-row rounded-[40px] overflow-hidden shadow-2xl border-2 border-black/5 bg-white">
+          
+          {/* Left Column: Dark Green Impact Panel */}
+          <motion.div {...fadeUp()} className="lg:w-1/2 bg-[#014C33] p-10 md:p-16 relative overflow-hidden flex flex-col justify-center text-white">
+            {/* Subtle Texture */}
+            <div 
+              className="absolute inset-0 opacity-10 pointer-events-none"
+              style={{
+                backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.4) 1px, transparent 0)`,
+                backgroundSize: '24px 24px',
+              }}
+            />
+            
+            <div className="relative z-10">
+              <span className="inline-block py-1.5 px-4 rounded-full bg-white/10 border border-white/20 text-xs font-bold uppercase tracking-widest mb-6">
+                The Livzo Difference
+              </span>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-10 tracking-tight leading-[1.1]">
+                Why Choose<br />LIVZO PG?
+              </h2>
+              
+              <div className="space-y-6">
+                {[
+                  'Family-like living environment — feel at home from day one',
+                  'Clean, disciplined & hygienic lifestyle',
+                  'Transparent pricing — no hidden charges',
+                  'Professional full-time management team',
+                  '3 convenient locations across Ahmedabad',
+                  'Trusted by 1000+ consumers & working professionals'
+                ].map(item => (
+                  <div key={item} className="flex items-start gap-4">
+                    <div className="w-8 h-8 rounded-full bg-[#25D366]/20 flex items-center justify-center flex-shrink-0 border border-[#25D366]/30">
+                      <CheckCircle2 size={18} className="text-[#25D366]" />
+                    </div>
+                    <span className="text-lg font-medium text-white/90 leading-snug">{item}</span>
                   </div>
-                  <span className="text-base text-text-secondary leading-relaxed">{item}</span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column: Light Cream Workflow Panel */}
+          <motion.div {...fadeUp(0.1)} className="lg:w-1/2 bg-[#F4F1EA] p-10 md:p-16 flex flex-col justify-center">
+            <h3 className="text-3xl font-black text-gray-900 mb-10 tracking-tight">
+              Simple & Hassle-Free<br />Booking Process
+            </h3>
+            
+            <div className="space-y-6">
+              {[
+                { step: '01', title: 'Choose Location', desc: 'Select from Science City, Naranpura, or Gota' },
+                { step: '02', title: 'Call / WhatsApp', desc: 'Contact us to check availability — +91 70462 67684' },
+                { step: '03', title: 'Visit the PG', desc: 'Schedule a visit to see the rooms in person' },
+                { step: '04', title: 'Move In Comfortably', desc: 'Complete booking & move into your new home' }
+              ].map((s, i) => (
+                <div key={s.step} className="flex items-start gap-5 p-5 bg-white rounded-2xl border-2 border-black/5 shadow-sm transition-transform hover:translate-x-2">
+                  <div className="flex flex-col items-center justify-center w-14 h-14 rounded-xl border border-black/10 bg-gray-50 text-[#014C33] font-black text-xl shrink-0">
+                    {s.step}
+                  </div>
+                  <div className="pt-1">
+                    <h4 className="font-bold text-gray-900 mb-1 text-lg tracking-tight">{s.title}</h4>
+                    <p className="text-sm font-medium text-gray-600">{s.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          <motion.div {...fadeUp(0.1)} className="bg-white rounded-card p-8 border border-border shadow-sm">
-            <h3 className="text-xl font-bold text-text-primary mb-8 tracking-tight">
-              Simple & Hassle-Free Booking Process
-            </h3>
-            <div className="space-y-8 relative before:absolute before:inset-0 before:ml-[19px] before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-border before:to-transparent">
-              {[
-                { step: '1', title: 'Choose Location', desc: 'Select from Science City, Naranpura, or Gota' },
-                { step: '2', title: 'Call / WhatsApp', desc: 'Contact us to check availability — +91 70462 67684' },
-                { step: '3', title: 'Visit the PG', desc: 'Schedule a visit to see the rooms in person' },
-                { step: '4', title: 'Move In Comfortably', desc: 'Complete booking & move into your new home' }
-              ].map((s, i) => (
-                <div key={s.step} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full border border-border bg-white text-text-primary font-bold shadow-sm shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
-                    {s.step}
-                  </div>
-                  <div className="w-[calc(100%-3rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-btn border border-border bg-bg shadow-sm">
-                    <h4 className="font-semibold text-text-primary mb-1 text-sm">{s.title}</h4>
-                    <p className="text-xs text-text-secondary font-light">{s.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="max-w-3xl mx-auto px-4 md:px-6 mb-32">
-        <motion.div {...fadeUp()} className="mb-10 text-center">
-          <h2 className="text-3xl font-bold text-text-primary tracking-tight">
-            Frequently Asked Questions
+      {/* FAQ - Redesigned */}
+      <section className="max-w-4xl mx-auto px-4 md:px-6 mb-32">
+        <motion.div {...fadeUp()} className="mb-12">
+          <span className="inline-block py-1.5 px-4 rounded-full bg-black/5 border border-black/10 text-xs font-bold uppercase tracking-widest mb-4">
+            Got Questions?
+          </span>
+          <h2 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tighter leading-none mb-4">
+            Frequently<br />Asked Questions.
           </h2>
         </motion.div>
-        <motion.div {...fadeUp(0.1)} className="bg-white rounded-card p-2 border border-border shadow-sm">
+        <motion.div {...fadeUp(0.1)} className="bg-white rounded-[32px] p-6 md:p-10 border-2 border-black/5 shadow-xl">
           {FAQ.map((faq) => (
-            <div key={faq.q} className="px-4">
+            <div key={faq.q} className="px-2">
               <FAQItem faq={faq} />
             </div>
           ))}
         </motion.div>
       </section>
 
-      {/* CTA */}
+      {/* CTA - Premium Dark Banner */}
       <section className="max-w-6xl mx-auto px-4 md:px-6 mb-32">
-        <motion.div {...fadeUp()} className="vf-card bg-white p-10 md:p-16 text-center shadow-lg border border-border">
-          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-5 tracking-tight text-balance">
-            Looking for the Best PG in Ahmedabad?
-          </h2>
-          <p className="text-text-secondary text-base mb-10 max-w-xl mx-auto font-light">
-            Don't compromise on your comfort and safety. Contact us today to schedule a visit and experience the LIVZO difference.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="tel:+917046267684" className="w-full sm:w-auto btn-primary btn-lg flex items-center justify-center gap-2 px-8 py-3.5 shadow-sm font-semibold">
-              <Phone size={18} /> Call Now
-            </a>
-            <Link to="/contact" className="w-full sm:w-auto btn-secondary btn-lg flex items-center justify-center gap-2 px-8 py-3.5 font-semibold">
-              Schedule a Visit Today
-            </Link>
+        <motion.div {...fadeUp()} className="bg-[#014C33] rounded-[40px] p-12 md:p-20 text-center shadow-2xl relative overflow-hidden flex flex-col items-center">
+          {/* Decorative Elements */}
+          <div className="absolute top-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#25D366]/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
+          
+          <div className="relative z-10 w-full max-w-3xl">
+            <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter leading-[1.1] text-balance">
+              Looking for the Best PG in Ahmedabad?
+            </h2>
+            <p className="text-xl text-white/80 mb-12 max-w-2xl mx-auto font-medium leading-relaxed">
+              Don't compromise on your comfort and safety. Contact us today to schedule a visit and experience the LIVZO difference.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+              <a href="tel:+917046267684" className="w-full sm:w-auto bg-[#25D366] text-[#014C33] hover:bg-[#20bd5a] hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-3 px-10 py-5 rounded-2xl font-black text-lg shadow-[0_8px_30px_rgb(37,211,102,0.3)]">
+                <Phone size={22} /> Call Now
+              </a>
+              <Link to="/contact" className="w-full sm:w-auto bg-white/10 text-white hover:bg-white/20 hover:scale-105 active:scale-95 border border-white/20 transition-all flex items-center justify-center gap-3 px-10 py-5 rounded-2xl font-bold text-lg backdrop-blur-sm">
+                Schedule a Visit
+              </Link>
+            </div>
           </div>
         </motion.div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-white border-t border-border py-12">
+      {/* Footer - Premium Dark Design */}
+      <footer className="bg-[#014C33] pt-20 pb-10 rounded-t-[40px] mt-auto">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row items-start justify-between gap-8">
-            <div className="max-w-xs">
-              <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-                  <HeartHandshake size={16} className="text-white" />
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8 mb-16">
+            
+            {/* Brand Column */}
+            <div className="md:col-span-5 lg:col-span-4">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-[#25D366] rounded-xl flex items-center justify-center shadow-[0_0_20px_rgb(37,211,102,0.2)]">
+                  <HeartHandshake size={20} className="text-[#014C33]" />
                 </div>
-                <span className="text-lg font-bold text-text-primary tracking-tight">LIVZO</span>
+                <span className="text-2xl font-black text-white tracking-tighter">LIVZO</span>
               </div>
-              <p className="text-sm text-text-secondary leading-relaxed font-light mb-4">
-                PG for students & working professionals in Gota | Naranpura | Science City
+              <p className="text-base text-gray-400 leading-relaxed font-medium mb-8 max-w-sm">
+                Premium paying guest accommodation for students & working professionals. Because you deserve to live comfortably.
               </p>
-              <div className="flex flex-col gap-2">
-                <a href="mailto:livzoindia@gmail.com" className="text-sm text-text-muted hover:text-accent transition-colors flex items-center gap-2">
-                  <Mail size={14} /> livzoindia@gmail.com
+              <div className="flex flex-col gap-4">
+                <a href="mailto:livzoindia@gmail.com" className="inline-flex items-center gap-3 text-gray-400 hover:text-white transition-colors group w-fit">
+                  <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#25D366]/20 transition-colors">
+                    <Mail size={14} className="group-hover:text-[#25D366]" />
+                  </div>
+                  <span className="font-medium tracking-tight">livzoindia@gmail.com</span>
                 </a>
-                <a href="tel:+917046267684" className="text-sm text-text-muted hover:text-accent transition-colors flex items-center gap-2">
-                  <Phone size={14} /> +91 70462 67684
+                <a href="tel:+917046267684" className="inline-flex items-center gap-3 text-gray-400 hover:text-white transition-colors group w-fit">
+                  <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#25D366]/20 transition-colors">
+                    <Phone size={14} className="group-hover:text-[#25D366]" />
+                  </div>
+                  <span className="font-medium tracking-tight">+91 70462 67684</span>
                 </a>
               </div>
             </div>
 
-            <div className="flex gap-12">
+            {/* Links Columns */}
+            <div className="md:col-span-7 lg:col-span-8 flex flex-wrap gap-12 justify-start md:justify-end">
               <div>
-                <p className="text-sm font-bold text-text-primary mb-4 tracking-tight">Locations</p>
-                <div className="space-y-2.5">
-                  <span className="block text-sm text-text-muted font-light">PG in Science City (Boys)</span>
-                  <span className="block text-sm text-text-muted font-light">PG in Naranpura (Boys)</span>
-                  <span className="block text-sm text-text-muted font-light">PG in Gota (Girls)</span>
+                <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6">Our Locations</p>
+                <div className="space-y-4">
+                  <span className="block text-sm text-gray-300 font-medium hover:text-white transition-colors cursor-default">📍 Science City (Boys)</span>
+                  <span className="block text-sm text-gray-300 font-medium hover:text-white transition-colors cursor-default">📍 Naranpura (Boys)</span>
+                  <span className="block text-sm text-gray-300 font-medium hover:text-white transition-colors cursor-default">📍 Gota (Girls)</span>
                 </div>
               </div>
-              <div>
-                <p className="text-sm font-bold text-text-primary mb-4 tracking-tight">Legal</p>
-                <div className="space-y-2.5">
-                  <Link to="#" className="block text-sm text-text-muted hover:text-accent transition-colors font-light">Privacy Policy</Link>
-                  <Link to="#" className="block text-sm text-text-muted hover:text-accent transition-colors font-light">Terms of Service</Link>
-                  <Link to="#" className="block text-sm text-text-muted hover:text-accent transition-colors font-light">Refund Policy</Link>
+              
+              <div className="md:ml-12">
+                <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6">Legal & Admin</p>
+                <div className="space-y-4 flex flex-col items-start">
+                  <Link to="#" className="text-sm text-gray-300 hover:text-white transition-colors font-medium">Privacy Policy</Link>
+                  <Link to="#" className="text-sm text-gray-300 hover:text-white transition-colors font-medium">Terms of Service</Link>
+                  <Link to="/login" className="text-sm text-gray-300 hover:text-[#25D366] transition-colors font-bold inline-flex items-center gap-1 mt-2">
+                    Admin Portal <ArrowRight size={14} />
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="vf-divider mt-10 mb-6" />
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8" />
 
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-text-muted font-light">
-              © {new Date().getFullYear()} LIVZO. All rights reserved.
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <p className="text-sm text-gray-500 font-medium">
+              © {new Date().getFullYear()} LIVZO PG. All rights reserved.
             </p>
-            <div className="flex items-center gap-6">
-              <span className="text-[10px] text-text-muted opacity-50 max-w-md hidden md:block">SEO Keywords: PG in Gota, PG in Naranpura, PG in Science City, Boys PG Ahmedabad, Girls PG Ahmedabad</span>
-              <Link to="/login" className="text-xs text-text-muted hover:text-accent font-medium transition-colors">Admin Login</Link>
-            </div>
+            <p className="text-[10px] text-gray-600 font-medium max-w-xl hidden lg:block opacity-50">
+              SEO Keywords: PG in Gota, PG in Naranpura, PG in Science City, Boys PG Ahmedabad, Girls PG Ahmedabad, Premium accommodation.
+            </p>
           </div>
         </div>
       </footer>
